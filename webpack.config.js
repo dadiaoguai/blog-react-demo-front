@@ -24,7 +24,7 @@ module.exports = function () {
             {
               loader: 'babel-loader',
               options: {
-                presets: ['env'],
+                presets: ['env','react'],
                 plugins: ['transform-runtime']
               }
             }
@@ -61,6 +61,6 @@ module.exports = function () {
       hot: true,
       historyApiFallback: true
     },
-    devtool: "eval-source-map"
+    devtool: "cheap-eval-source-map"
   }
 }

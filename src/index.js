@@ -1,13 +1,9 @@
-import _ from 'lodash'
-import './styles/index.css'
-import './styles/test.scss'
-import moment from 'moment'
+import React from 'react'
+import ReactDom from 'react-dom'
 
-let component = () => {
-  let ele = document.createElement('div')
-  ele.innerHTML = _.join(['hello', 'charles '], moment().format())
+import App from './containers'
 
-  return ele
-}
-
-document.body.appendChild(component())
+ReactDom.render(
+  <App/>,
+  document.getElementById('root')
+)
