@@ -15,7 +15,6 @@ class Level2 extends React.Component {
   }
 
   render() {
-    console.log(this.state.date)
     return (
       <div className="level2">
         <Level1 value={this.props.value}/>
