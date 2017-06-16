@@ -2,9 +2,10 @@ const express = require('express')
 , router = express.Router()
 , path = require('path')
 , fs = require('fs')
+, config = require('config')
 
 app = express()
-const resolve = (file) => path.resolve(__dirname, file)
+const resolve = (file) => path.resolve(require('process').cwd(), file)
 
 app.use(express.static('dist'))
 app.get('/', (req, res) => {
@@ -12,4 +13,4 @@ app.get('/', (req, res) => {
   res.send(html)
 })
 
-app.listen(3000, () => console.log('listening on port 3000!'))
+app.listen(config.port, () => console.log(`listening on port ${config.port}!`))

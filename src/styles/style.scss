@@ -1,0 +1,42 @@
+#root {
+    min-width: 1280px;
+    min-height: 800px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.login-bar {
+    width: 564px;
+    height: 210px;
+    border: 1px solid black;
+    padding: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    input {
+        width: 90%;
+    }
+    .child {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 25px;
+    }
+    .button {
+        display: block;
+        background: #c0c0c0;
+        margin: auto;
+        width: 100px;
+        height: 30px;
+    }
+    .message {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .top25 {
+        margin-top: 25px;
+    }
+}
+

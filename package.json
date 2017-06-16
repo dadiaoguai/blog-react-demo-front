@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --progress --watch",
-    "start": "NODE_ENV=dev node app.js",
+    "start": "NODE_ENV=dev node server/app.js",
     "serve": "serve"
   },
   "repository": {
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/dadiaoguai/blog-react-demo-front#readme",
   "dependencies": {
+    "config": "^1.26.1",
     "express": "^4.15.3",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
