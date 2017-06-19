@@ -1,6 +1,9 @@
 import React from 'react'
 import _ from 'lodash'
 import axios from 'axios'
+import config from '../config'
+
+const loginUrl = config.localhost + 'login'
 
 class LoginBar extends React.Component {
   constructor(props) {
@@ -28,19 +31,34 @@ class LoginBar extends React.Component {
   }
 
   handlerSubmit(e) {
-    console.log(this.state)
     if (_.isEmpty(this.state.username) || _.isEmpty(this.state.password)) {
-      this.setState({
+      return this.setState({
         message: '账号和密码不允许为空!',
         username: '',
         password: ''
       })
-    } else {
-      this.setState({
-        message: ''
+    }
+
+    let run = async () => {
+      let {data} = await axios.post(loginUrl, {
+        username: this.state.username,
+        password: this.state.password
       })
 
+      if (data.status === 'success') {
+        this.setState({
+          message: '登录成功'
+        })
+      } else {
+        this.setState({
+          message: `登录失败: ${data.msg}`,
+          username: '',
+          password: ''
+        })
+      }
     }
+
+    run().catch(err => console.log(err))
   }
 
   render() {
