@@ -3,7 +3,7 @@ import ReactDom from 'react-dom'
 import './styles/normalize.css'
 import './styles/style.scss'
 
-import App from './containers/login'
+import App from './containers/clock'
 
 ReactDom.render(
   <App/>,

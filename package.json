@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/dadiaoguai/blog-react-demo-front#readme",
   "dependencies": {
+    "axios": "^0.16.2",
     "config": "^1.26.1",
     "express": "^4.15.3",
     "lodash": "^4.17.4",

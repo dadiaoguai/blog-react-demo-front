@@ -1,5 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
+import axios from 'axios'
 
 class LoginBar extends React.Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class LoginBar extends React.Component {
       this.setState({
         message: ''
       })
+
     }
   }
 

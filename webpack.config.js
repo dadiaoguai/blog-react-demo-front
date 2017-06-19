@@ -61,6 +61,6 @@ module.exports = function () {
       hot: true,
       historyApiFallback: true
     },
-    devtool: "cheap-eval-source-map"
+    devtool: "source-map"
   }
 }
