@@ -23,6 +23,20 @@ const Topic = ({ match }) => (
 </div>
 )
 
+class Topic1 extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return (
+      <div>
+        <h3>{this.props.match.params.topicId}</h3>
+      </div>
+    )
+  }
+}
+
 const Topics = ({match}) => (
   <div>
     <h2>Topics</h2>
@@ -44,7 +58,7 @@ const Topics = ({match}) => (
       </li>
     </ul>
 
-    <Route path={`${match.url}/:topicId`} component={Topic}/>
+    <Route path={`${match.url}/:topicId`} component={Topic1}/>
     <Route exact path={match.url} render={() => (
       <h3>Please select a topic</h3>
     )}/>
