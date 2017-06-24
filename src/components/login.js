@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import _ from 'lodash'
 import axios from 'axios'
 import config from '../config'
@@ -31,11 +32,13 @@ class LoginBar extends React.Component {
   }
 
   handlerSubmit(e) {
+    e.stopPropagation()
     if (_.isEmpty(this.state.username) || _.isEmpty(this.state.password)) {
       return this.setState({
         message: '账号和密码不允许为空!',
         username: '',
-        password: ''
+        password: '',
+        isLogin: false
       })
     }
 
@@ -47,7 +50,7 @@ class LoginBar extends React.Component {
 
       if (data.status === 'success') {
         this.setState({
-          message: '登录成功'
+          isLogin: true
         })
       } else {
         this.setState({
@@ -58,10 +61,21 @@ class LoginBar extends React.Component {
       }
     }
 
-    run().catch(err => console.log(err))
+    run().catch(err => {
+      this.setState({
+        message: `登录失败: ${err.message}`,
+        username: '',
+        password: ''
+      })
+    })
   }
 
   render() {
+    const { from } = this.props.location.state || { from: { pathname: '/backend/home' } }
+    if (this.state.isLogin) {
+      return (<Redirect to={from}/>)
+    }
+
     return  (
       <div className="login-bar">
         <p className="message">{this.state.message}</p>
@@ -79,4 +93,4 @@ class LoginBar extends React.Component {
   }
 }
 
-module.exports = LoginBar
+export default LoginBar

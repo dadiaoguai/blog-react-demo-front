@@ -28,8 +28,11 @@
     "prop-type": "0.0.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "react-router-config": "^1.0.0-beta.3",
     "react-router-dom": "^4.1.1",
-    "react-transition-group": "^1.2.0"
+    "react-transition-group": "^1.2.0",
+    "redux": "^3.7.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
