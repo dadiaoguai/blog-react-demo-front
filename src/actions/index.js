@@ -5,3 +5,7 @@ export const login = (username, password) => ({
   username,
   password
 })
+
+export const logout = () => ({
+  type: actionType.logout
+})

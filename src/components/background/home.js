@@ -1,9 +1,23 @@
 import React from 'react'
+import {Redirect} from 'react-router-dom'
+import Header from '../common/header'
 
 class BackendHome extends React.Component {
 
   render() {
-    return (<p> 你好, 跳转成功了!</p>)
+    const {account, match, dispatch} = this.props
+    if (!account.active) {
+      return <Redirect from={match.path} to='/login'/>
+    }
+
+    return (
+       <div>
+         <Header dispatch={dispatch}/>
+         <main>
+           欢迎!
+         </main>
+       </div>
+    )
   }
 }
 

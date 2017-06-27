@@ -40,3 +40,20 @@
     }
 }
 
+header {
+    height: 50px;
+    background: #E7E9F4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    nav {
+        a {
+            display: inline-block;
+        }
+        .first {
+            margin-right: 18px;
+        }
+    }
+}
+

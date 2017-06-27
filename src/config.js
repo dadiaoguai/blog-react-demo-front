@@ -3,5 +3,6 @@ export default {
 }
 
 export const actionType = {
-  login: 'LOGIN'
+  login: 'LOGIN',
+  logout: 'LOGOUT'
 }

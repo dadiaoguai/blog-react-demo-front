@@ -4,14 +4,16 @@ import {
   Route,
   Redirect
 } from 'react-router-dom'
-import Login from './login'
-import BackendHome from './background/home'
+import Screen from '../containers/screen'
+import Login from '../containers/login'
+import BackendHome from '../containers/background/home'
 
 const App = () => (
   <div>
-    <Redirect from='/' to='/login'/>
+    <Redirect from='/' to="/backend/home"/>
     <Route path='/login' component={Login}/>
     <Route path='/backend/home' component={BackendHome}/>
+    <Screen />
   </div>
 )
 
