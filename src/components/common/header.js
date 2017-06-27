@@ -32,7 +32,7 @@ class Header extends React.Component {
           <a href="javascript:;" className="first">文章管理</a>
           <a href="javascript:;">标签管理</a>
         </nav>
-        <button onClick={this.logout}>登出</button>
+        <button onClick={this.logout} className="btn btn-default">登出</button>
       </header>
     )
   }

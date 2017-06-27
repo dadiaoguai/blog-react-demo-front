@@ -18,6 +18,10 @@ module.exports = function () {
           use: ['style-loader','css-loader']
         },
         {
+          test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
+          use: "file-loader"
+        },
+        {
           test: /\.js$/,
           exclude: /node_modules/,
           use: [
@@ -47,6 +51,10 @@ module.exports = function () {
       extensions: ['.js','.jsx','.json']
     },
     plugins: [
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery'
+      }),
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
         minChunks: function (module) { // 提取所有的公共vendor

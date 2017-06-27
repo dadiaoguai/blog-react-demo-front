@@ -1,7 +1,7 @@
 #root {
     min-width: 1280px;
-    min-height: 800px;
     width: 100%;
+    min-height: 800px;
     height: 100%;
     position: relative;
 }
@@ -15,6 +15,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
     input {
         width: 90%;
     }
@@ -35,6 +36,7 @@
         top: 0;
         left: 0;
     }
+
     .top25 {
         margin-top: 25px;
     }
@@ -57,3 +59,42 @@ header {
     }
 }
 
+main.backend {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    padding-top: 70px;
+    .table {
+        margin-left: 50%;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%);
+
+        .title {
+            width: 35%;
+        }
+
+        td, th {
+            text-align: center;
+        }
+
+        a {
+            display: inline-block;
+        }
+
+        .first {
+            margin-right: 10px;
+        }
+    }
+
+    .new {
+        position: absolute;
+        top: 20px;
+    }
+
+    .form {
+        margin-top: -20px;
+    }
+}
