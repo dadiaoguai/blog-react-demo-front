@@ -1,5 +1,8 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
+import {
+  Redirect,
+  Route
+} from 'react-router-dom'
 import Header from '../common/header'
 import ArticleManagement from './articleManagement'
 import NewArticle from './newArticle'
@@ -16,7 +19,8 @@ class BackendHome extends React.Component {
        <div>
          <Header dispatch={dispatch}/>
          <main className="backend">
-           <ArticleManagement/>
+           <Route path="/backend/articles/index" component={ArticleManagement}/>
+           <Route path="/backend/articles/new" component={NewArticle}/>
          </main>
        </div>
     )

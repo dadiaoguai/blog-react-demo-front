@@ -1,10 +1,15 @@
 import React from 'react'
+import {
+  Link
+} from 'react-router-dom'
 
 class ArticleManagement extends React.Component {
   render() {
     return (
       <div>
-        <a href="javascript:;" className="btn btn-default new">新增</a>
+        <Link to='/backend/articles/new'>
+          <span className="btn btn-default new">新增</span>
+        </Link>
         <table className="table table-bordered">
           <thead>
           <tr>

@@ -1,5 +1,9 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
+import {
+  Redirect,
+  Link,
+  withRouter
+} from 'react-router-dom'
 import axios from 'axios'
 import config from '../../config'
 import {logout} from '../../actions'
@@ -29,8 +33,8 @@ class Header extends React.Component {
     return (
       <header>
         <nav>
-          <a href="javascript:;" className="first">文章管理</a>
-          <a href="javascript:;">标签管理</a>
+          <Link to='/backend/articles/index'><span className="first">文章管理</span></Link>
+          <Link to='/backend/tags/index'><span className="first">标签管理</span></Link>
         </nav>
         <button onClick={this.logout} className="btn btn-default">登出</button>
       </header>
@@ -38,4 +42,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header
+export default withRouter(Header)

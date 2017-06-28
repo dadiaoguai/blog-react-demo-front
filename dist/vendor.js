@@ -15078,7 +15078,8 @@ var BackendHome = function (_React$Component) {
         _react2.default.createElement(
           'main',
           { className: 'backend' },
-          _react2.default.createElement(_articleManagement2.default, null)
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/backend/articles/index', component: _articleManagement2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/backend/articles/new', component: _newArticle2.default })
         )
       );
     }
@@ -15217,14 +15218,22 @@ var Header = function (_React$Component) {
           'nav',
           null,
           _react2.default.createElement(
-            'a',
-            { href: 'javascript:;', className: 'first' },
-            '\u6587\u7AE0\u7BA1\u7406'
+            _reactRouterDom.Link,
+            { to: '/backend/articles/index' },
+            _react2.default.createElement(
+              'span',
+              { className: 'first' },
+              '\u6587\u7AE0\u7BA1\u7406'
+            )
           ),
           _react2.default.createElement(
-            'a',
-            { href: 'javascript:;' },
-            '\u6807\u7B7E\u7BA1\u7406'
+            _reactRouterDom.Link,
+            { to: '/backend/tags/index' },
+            _react2.default.createElement(
+              'span',
+              { className: 'first' },
+              '\u6807\u7B7E\u7BA1\u7406'
+            )
           )
         ),
         _react2.default.createElement(
@@ -15238,7 +15247,7 @@ var Header = function (_React$Component) {
   return Header;
 }(_react2.default.Component);
 
-exports.default = Header;
+exports.default = (0, _reactRouterDom.withRouter)(Header);
 
 /***/ }),
 /* 198 */
@@ -15275,9 +15284,9 @@ var App = function App() {
   return _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(_reactRouterDom.Redirect, { from: '/', to: '/backend/home' }),
+    _react2.default.createElement(_reactRouterDom.Redirect, { from: '/', to: '/backend' }),
     _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _login2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/backend/home', component: _home2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/backend', component: _home2.default }),
     _react2.default.createElement(_screen2.default, null)
   );
 };
@@ -61412,6 +61421,8 @@ var _react = __webpack_require__(6);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(35);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ArticleManagement = function (_React$Component) {
@@ -61423,128 +61434,132 @@ var ArticleManagement = function (_React$Component) {
   }
 
   (0, _createClass3.default)(ArticleManagement, [{
-    key: "render",
+    key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        "div",
+        'div',
         null,
         _react2.default.createElement(
-          "a",
-          { href: "javascript:;", className: "btn btn-default new" },
-          "\u65B0\u589E"
+          _reactRouterDom.Link,
+          { to: '/backend/articles/new' },
+          _react2.default.createElement(
+            'span',
+            { className: 'btn btn-default new' },
+            '\u65B0\u589E'
+          )
         ),
         _react2.default.createElement(
-          "table",
-          { className: "table table-bordered" },
+          'table',
+          { className: 'table table-bordered' },
           _react2.default.createElement(
-            "thead",
+            'thead',
             null,
             _react2.default.createElement(
-              "tr",
+              'tr',
               null,
               _react2.default.createElement(
-                "th",
+                'th',
                 null,
-                "\u6587\u7AE0\u6807\u9898"
+                '\u6587\u7AE0\u6807\u9898'
               ),
               _react2.default.createElement(
-                "th",
+                'th',
                 null,
-                "\u4F5C\u8005"
+                '\u4F5C\u8005'
               ),
               _react2.default.createElement(
-                "th",
+                'th',
                 null,
-                "\u521B\u5EFA\u65F6\u95F4"
+                '\u521B\u5EFA\u65F6\u95F4'
               ),
               _react2.default.createElement(
-                "th",
+                'th',
                 null,
-                "\u4FEE\u6539\u65F6\u95F4"
+                '\u4FEE\u6539\u65F6\u95F4'
               ),
               _react2.default.createElement(
-                "th",
+                'th',
                 null,
-                "\u64CD\u4F5C"
+                '\u64CD\u4F5C'
               )
             )
           ),
           _react2.default.createElement(
-            "tbody",
+            'tbody',
             null,
             _react2.default.createElement(
-              "tr",
+              'tr',
               null,
               _react2.default.createElement(
-                "td",
+                'td',
                 null,
-                "\u6587\u7AE0\u6807\u98981"
+                '\u6587\u7AE0\u6807\u98981'
               ),
               _react2.default.createElement(
-                "td",
+                'td',
                 null,
-                "\u5218\u4F73\u5E0C"
+                '\u5218\u4F73\u5E0C'
               ),
               _react2.default.createElement(
-                "td",
+                'td',
                 null,
-                "2017-05-01 14:15"
+                '2017-05-01 14:15'
               ),
               _react2.default.createElement(
-                "td",
+                'td',
                 null,
-                "2017-05-01 14:15"
+                '2017-05-01 14:15'
               ),
               _react2.default.createElement(
-                "td",
+                'td',
                 null,
                 _react2.default.createElement(
-                  "a",
-                  { href: "javascript:;", className: "first" },
-                  "\u7F16\u8F91"
+                  'a',
+                  { href: 'javascript:;', className: 'first' },
+                  '\u7F16\u8F91'
                 ),
                 _react2.default.createElement(
-                  "a",
-                  { href: "javascript:;" },
-                  "\u5220\u9664"
+                  'a',
+                  { href: 'javascript:;' },
+                  '\u5220\u9664'
                 )
               )
             ),
             _react2.default.createElement(
-              "tr",
+              'tr',
               null,
               _react2.default.createElement(
-                "td",
+                'td',
                 null,
-                "\u8FD9\u662F\u5F88\u957F\u7684\u6807\u9898\u8FD9\u662F\u5F88\u957F\u7684\u6807\u9898\u8FD9\u662F\u5F88\u957F\u7684\u6807\u9898"
+                '\u8FD9\u662F\u5F88\u957F\u7684\u6807\u9898\u8FD9\u662F\u5F88\u957F\u7684\u6807\u9898\u8FD9\u662F\u5F88\u957F\u7684\u6807\u9898'
               ),
               _react2.default.createElement(
-                "td",
+                'td',
                 null,
-                "\u5218\u4F73\u5E0C"
+                '\u5218\u4F73\u5E0C'
               ),
               _react2.default.createElement(
-                "td",
+                'td',
                 null,
-                "2017-05-01 14:15"
+                '2017-05-01 14:15'
               ),
               _react2.default.createElement(
-                "td",
+                'td',
                 null,
-                "2017-05-01 14:15"
+                '2017-05-01 14:15'
               ),
               _react2.default.createElement(
-                "td",
+                'td',
                 null,
                 _react2.default.createElement(
-                  "a",
-                  { href: "javascript:;", className: "first" },
-                  "\u7F16\u8F91"
+                  'a',
+                  { href: 'javascript:;', className: 'first' },
+                  '\u7F16\u8F91'
                 ),
                 _react2.default.createElement(
-                  "a",
-                  { href: "javascript:;" },
-                  "\u5220\u9664"
+                  'a',
+                  { href: 'javascript:;' },
+                  '\u5220\u9664'
                 )
               )
             )

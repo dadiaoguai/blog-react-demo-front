@@ -10,9 +10,9 @@ import BackendHome from '../containers/background/home'
 
 const App = () => (
   <div>
-    <Redirect from='/' to="/backend/home"/>
+    <Redirect from='/' to="/backend"/>
     <Route path='/login' component={Login}/>
-    <Route path='/backend/home' component={BackendHome}/>
+    <Route path='/backend' component={BackendHome}/>
     <Screen />
   </div>
 )
