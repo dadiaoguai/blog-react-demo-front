@@ -7,21 +7,42 @@ import {
 import _ from 'lodash'
 
 const IMAGES = [
-  { id: 0, title: 'Dark Orchid', color: 'DarkOrchid' },
-  { id: 1, title: 'Lime Green', color: 'LimeGreen' },
-  { id: 2, title: 'Tomato', color: 'Tomato' },
-  { id: 3, title: 'Seven Ate Nine', color: '#789' },
-  { id: 4, title: 'Crimson', color: 'Crimson' }
+  {
+    id: 0,
+    title: 'Dark Orchid',
+    color: 'DarkOrchid'
+  },
+  {
+    id: 1,
+    title: 'Lime Green',
+    color: 'LimeGreen'
+  },
+  {
+    id: 2,
+    title: 'Tomato',
+    color: 'Tomato'
+  },
+  {
+    id: 3,
+    title: 'Seven Ate Nine',
+    color: '#789'
+  },
+  {
+    id: 4,
+    title: 'Crimson',
+    color: 'Crimson'
+  }
 ]
 
 class Box extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.previousLocation = this.props.location
   }
 
-  componentWillUpdate(nextProps) {
+  componentWillUpdate (nextProps) {
     const {location} = this.props
+
     if (
       nextProps.history.action !== 'POP' &&
       (!location.state || !location.state.modal)
@@ -30,21 +51,22 @@ class Box extends React.Component {
     }
   }
 
-  render() {
+  render () {
     const {location} = this.props
-    const IsModal = (
+    const IsModal = 
       location.state &&
       location.state.modal &&
       this.previousLocation !== location
-    )
+    
+
     return (
       <div>
         <Switch location={IsModal ? this.previousLocation : location}>
-          <Route exact path='/' component={Home}/>
-          <Route path='/gallery' component={Gallery}/>
-          <Route path='/img/:id' component={ImageView}/>
+          <Route exact path="/" component={Home}/>
+          <Route path="/gallery" component={Gallery}/>
+          <Route path="/img/:id" component={ImageView}/>
         </Switch>
-        {IsModal ? <Route path='/img/:id' component={Modal}/> : null}
+        {IsModal ? <Route path="/img/:id" component={Modal}/> : null}
       </div>
 
     )
@@ -53,14 +75,14 @@ class Box extends React.Component {
 
 class Home extends React.Component {
 
-  render() {
+  render () {
     return (
       <div>
-        <Link to='/gallery'>visit the Gallery</Link>
+        <Link to="/gallery">visit the Gallery</Link>
         <h2>Featured Images</h2>
         <ul>
-          <li><Link to='/img/2'>Tomato</Link></li>
-          <li><Link to='/img/4'>Crimson</Link></li>
+          <li><Link to="/img/2">Tomato</Link></li>
+          <li><Link to="/img/4">Crimson</Link></li>
         </ul>
       </div>
     )
@@ -68,19 +90,21 @@ class Home extends React.Component {
 }
 
 class ImageView extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.goBack = this.goBack.bind(this)
   }
 
-  goBack(e) {
+  goBack (e) {
     let {history} = this.props
+
     e.stopPropagation()
     history.goBack()
   }
-  render() {
+  render () {
     let {id} = this.props.match.params
     let img = _.find(IMAGES, i => i.id === parseInt(id))
+
     return (
       <div
         style={{
@@ -96,10 +120,10 @@ class ImageView extends React.Component {
 }
 
 class Gallery extends React.Component {
-  render() {
+  render () {
     return (
       <ul>
-        {IMAGES.map(i => (
+        {IMAGES.map(i => 
           <li key={i.id}>
             <Thumbnail color={i.color}/>
             <Link to={{
@@ -107,7 +131,7 @@ class Gallery extends React.Component {
               state: {modal: true}
             }}>{i.title}</Link>
           </li>
-        ))}
+        )}
       </ul>
     )
   }
@@ -123,7 +147,7 @@ const Thumbnail = ({color}) =>
   />
 
 class Modal extends React.Component {
-  render() {
+  render () {
     const {match, history} = this.props
     const image = IMAGES[parseInt(match.params.id)]
 
@@ -131,7 +155,7 @@ class Modal extends React.Component {
       return null
     }
 
-    const back = (e) => {
+    const back = e => {
       e.stopPropagation()
       history.goBack()
     }
@@ -148,7 +172,7 @@ class Modal extends React.Component {
           background: 'rgba(0, 0, 0, 0.15)'
         }}
       >
-        <div className='modal' style={{
+        <div className="modal" style={{
           position: 'absolute',
           background: '#fff',
           top: 25,
@@ -159,7 +183,7 @@ class Modal extends React.Component {
         }}>
           <h1>{image.title}</h1>
           <Image color={image.color} />
-          <button type='button' onClick={back}>
+          <button type="button" onClick={back}>
             Close
           </button>
         </div>
@@ -176,4 +200,5 @@ const Image = ({color}) =>
   }} />
 
 const ModalGallery = () => <Route component={Box}/>
+
 export default ModalGallery

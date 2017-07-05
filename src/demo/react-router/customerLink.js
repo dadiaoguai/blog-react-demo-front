@@ -5,11 +5,11 @@ import {
 } from 'react-router-dom'
 
 class CustomerLinkExample extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
-  render() {
+  render () {
     return (
       <div>
         <OldSchoolMenuLink activeOnlyExact={true} to="/" label="Home"/>
@@ -23,21 +23,22 @@ class CustomerLinkExample extends React.Component {
 }
 
 class OldSchoolMenuLink extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
-  render() {
+  render () {
     let {activeOnlyExact, to, label} = this.props
+
     return (
       <Route
         exact={activeOnlyExact}
         path={to}
-        children={({match}) => (
+        children={({match}) => 
           <div className={match ? 'active' : null}>
             {match ? '>' : ''}<Link to={to}>{label}</Link>
           </div>
-        )}
+        }
       />
     )
   }

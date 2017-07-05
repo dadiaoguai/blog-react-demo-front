@@ -1,5 +1,5 @@
 import React from 'react'
-import { CSSTransitionGroup } from 'react-transition-group'
+import {CSSTransitionGroup} from 'react-transition-group'
 import {
   BrowserRouter as Router,
   Route,
@@ -19,11 +19,11 @@ import {
  }
  */
 
-const AnimationExample = () => (
+const AnimationExample = () => 
   <div style={styles.fill}>
-    <Route exact path="/" render={() => (
+    <Route exact path="/" render={() => 
       <Redirect to="/10/90/50"/>
-    )}/>
+    }/>
 
     <ul style={styles.nav}>
       <NavLink to="/10/90/50">Red</NavLink>
@@ -51,21 +51,21 @@ const AnimationExample = () => (
       </CSSTransitionGroup>
     </div>
   </div>
-)
 
-const NavLink = (props) => (
+
+const NavLink = props => 
   <li style={styles.navItem}>
-    <Link {...props} style={{ color: 'inherit' }}/>
+    <Link {...props} style={{color: 'inherit'}}/>
   </li>
-)
 
-const HSL = ({ match: { params } }) => (
+
+const HSL = ({match: {params}}) => 
   <div style={{
     ...styles.fill,
     ...styles.hsl,
     background: `hsl(${params.h}, ${params.s}%, ${params.l}%)`
   }}>hsl({params.h}, {params.s}%, {params.l}%)</div>
-)
+
 
 const styles = {}
 

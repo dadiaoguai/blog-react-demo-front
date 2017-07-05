@@ -1,14 +1,14 @@
 import React from 'react'
 
 class Box1 extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate (nextProps, nextState) {
     return nextProps.msg === 'ss'
   }
-  render() {
+  render () {
     return (
       <p>{this.props.msg}</p>
     )
@@ -16,21 +16,17 @@ class Box1 extends React.Component {
 }
 
 class Box2 extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
-    this.state = {
-      msg: ''
-    }
+    this.state = {msg: ''}
     this.getMsg = this.getMsg.bind(this)
   }
 
-  getMsg(e) {
-    this.setState({
-      msg: e.target.value
-    })
+  getMsg (e) {
+    this.setState({msg: e.target.value})
   }
 
-  render() {
+  render () {
     return (
       <div>
         <Box1 msg={this.state.msg} value="哈哈哈"/>

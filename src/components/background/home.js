@@ -9,20 +9,21 @@ import NewArticle from './newArticle'
 
 class BackendHome extends React.Component {
 
-  render() {
+  render () {
     const {account, match, dispatch} = this.props
+
     if (!account.active) {
-      return <Redirect from={match.path} to='/login'/>
+      return <Redirect from={match.path} to="/login"/>
     }
 
     return (
-       <div>
-         <Header dispatch={dispatch}/>
-         <main className="backend">
-           <Route path="/backend/articles/index" component={ArticleManagement}/>
-           <Route path="/backend/articles/new" component={NewArticle}/>
-         </main>
-       </div>
+      <div>
+        <Header dispatch={dispatch}/>
+        <main className="backend">
+          <Route path="/backend/articles/index" component={ArticleManagement}/>
+          <Route path="/backend/articles/new" component={NewArticle}/>
+        </main>
+      </div>
     )
   }
 }

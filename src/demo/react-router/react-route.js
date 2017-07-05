@@ -5,30 +5,30 @@ import {
   Link
 } from 'react-router-dom'
 
-const Home = () => (
+const Home = () => 
   <div>
     <h2>主页</h2>
   </div>
-)
 
-const About = () => (
+
+const About = () => 
   <div>
     <h2>关于</h2>
   </div>
-)
 
-const Topic = ({ match }) => (
-<div>
-  <h3>{match.params.topicId}</h3>
-</div>
-)
+
+const Topic = ({match}) => 
+  <div>
+    <h3>{match.params.topicId}</h3>
+  </div>
+
 
 class Topic1 extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
-  render() {
+  render () {
     return (
       <div>
         <h3>{this.props.match.params.topicId}</h3>
@@ -37,7 +37,7 @@ class Topic1 extends React.Component {
   }
 }
 
-const Topics = ({match}) => (
+const Topics = ({match}) => 
   <div>
     <h2>Topics</h2>
     <ul>
@@ -59,19 +59,19 @@ const Topics = ({match}) => (
     </ul>
 
     <Route path={`${match.url}/:topicId`} component={Topic1}/>
-    <Route exact path={match.url} render={() => (
+    <Route exact path={match.url} render={() => 
       <h3>Please select a topic</h3>
-    )}/>
+    }/>
   </div>
-)
 
-const BasicExample = () => (
+
+const BasicExample = () => 
   <Router>
     <div>
       <ul>
-        <li><Link to='/'>主页</Link></li>
-        <li><Link to='/about'>关于</Link></li>
-        <li><Link to='/topics'>其他</Link></li>
+        <li><Link to="/">主页</Link></li>
+        <li><Link to="/about">关于</Link></li>
+        <li><Link to="/topics">其他</Link></li>
       </ul>
 
       <hr/>
@@ -81,6 +81,6 @@ const BasicExample = () => (
       <Route path="/topics" component={Topics}/>
     </div>
   </Router>
-)
+
 
 export default BasicExample

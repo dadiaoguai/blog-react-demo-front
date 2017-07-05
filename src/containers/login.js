@@ -1,41 +1,40 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import _ from 'lodash'
 import axios from 'axios'
 import {login} from '../actions'
 import config from '../config'
 
-const loginUrl = config.localhost + 'login'
+const loginUrl = `${config.localhost}login`
 
 class LoginBar extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
-    this.state = {
-      message: '',
-    }
+    this.state = {message: ''}
     this.onSubmit = this.onSubmit.bind(this)
   }
 
-  onSubmit(e) {
+  onSubmit (e) {
     let [username, password] = [this.username.value, this.password.value]
     let {dispatch} = this.props
+
     e.stopPropagation()
-    if (_.isEmpty(username)|| _.isEmpty(password)) {
-      this.setState({
-        message: '账号或者密码不允许为空!'
-      })
+    if (_.isEmpty(username) || _.isEmpty(password)) {
+      this.setState({message: '账号或者密码不允许为空!'})
       this.username.value = ''
       this.password.value = ''
     }
 
     let run = async () => {
-      let {data} = await axios.post(loginUrl, {username, password})
+      let {data} = await axios.post(loginUrl, {
+        username,
+        password
+      })
+
       if (data.status === 'failed') {
-        this.setState({
-          message: data.msg
-        })
+        this.setState({message: data.msg})
         this.username.value = ''
         this.password.value = ''
       } else {
@@ -44,16 +43,14 @@ class LoginBar extends React.Component {
     }
 
     run().catch(err => {
-      this.setState({
-        message: err.message
-      })
+      this.setState({message: err.message})
       this.username.value = ''
       this.password.value = ''
     })
   }
 
-  render() {
-    const {from} = this.props.location.state || { from: { pathname: '/backend/home' } }
+  render () {
+    const {from} = this.props.location.state || {from: {pathname: '/backend/home'}}
     const {active} = this.props
 
     if (active) {
@@ -76,9 +73,9 @@ class LoginBar extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  active: state.account.active || false
-})
+const mapStateToProps = state => {
+  return {active: state.account.active || false} 
+}
 
 const Login = withRouter(connect(mapStateToProps)(LoginBar))
 

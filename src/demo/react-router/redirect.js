@@ -9,45 +9,45 @@ import {
 
 const fakeAuth = {
   isAuthenticated: false,
-  authenticate(cb) {
+  authenticate (cb) {
     this.isAuthenticated = true
     setTimeout(cb, 100)
   },
-  signout(cb) {
+  signout (cb) {
     this.isAuthenticated = false
     setTimeout(cb, 100)
   }
 }
 
-const AuthButton = withRouter(({history}) => (
+const AuthButton = withRouter(({history}) => 
   fakeAuth.isAuthenticated ?
-  (
+    
     <p>
       Welcome! <button onClick={() => fakeAuth.signout(() => history.push('/'))}>Sign out</button>
-    </p>
-  ) :
-  (
+    </p>     :
+    
     <p>You are no logged in</p>
-  )
-))
+    
+)
 
 class PrivateRoute1 extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
-  render() {
+  render () {
     let {component, ...rest} = this.props
+
     return (
       <Route {...rest}
-        render={props => (
+        render={props => 
           fakeAuth.isAuthenticated ?
-          (<component {...props}/>) :
-          (<Redirect to={{
-            pathname: '/login',
-            state: {from: props.location}
-          }}/>)
-        )}
+            <component {...props}/> :
+            <Redirect to={{
+              pathname: '/login',
+              state: {from: props.location}
+            }}/>
+        }
       />
     )
   }
@@ -57,21 +57,20 @@ const Public = () => <h3>Public</h3>
 const Protected = () => <h3>Protected</h3>
 
 class Login extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
-    this.state = {
-      redirectToReferrer: false
-    }
+    this.state = {redirectToReferrer: false}
     this.login = this.login.bind(this)
   }
 
-  login() {
-    fakeAuth.authenticate(() => this.setState({ redirectToReferrer: true}))
+  login () {
+    fakeAuth.authenticate(() => this.setState({redirectToReferrer: true}))
   }
 
-  render() {
+  render () {
     const {from} = this.props.location.state || {from: {path: '/'}}
     const {redirectToReferrer} = this.state
+
     if (redirectToReferrer) {
       return (
         <Redirect to={from}/>
@@ -88,24 +87,24 @@ class Login extends React.Component {
 }
 
 class AuthExample extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
-  render() {
+  render () {
     return (
-    <Router>
-      <div>
-        <AuthButton/>
-        <ul>
-          <li><Link to='/public'>Public Path</Link></li>
-          <li><Link to='/protected'>Protected Page</Link></li>
-        </ul>
-        <Route path='/public' component={Public} />
-        <Route path='/login' component={Login} />
-        <PrivateRoute1 path='/protected' component={Protected} />
-      </div>
-    </Router>
+      <Router>
+        <div>
+          <AuthButton/>
+          <ul>
+            <li><Link to="/public">Public Path</Link></li>
+            <li><Link to="/protected">Protected Page</Link></li>
+          </ul>
+          <Route path="/public" component={Public} />
+          <Route path="/login" component={Login} />
+          <PrivateRoute1 path="/protected" component={Protected} />
+        </div>
+      </Router>
     )
   }
 }

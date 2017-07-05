@@ -3,33 +3,29 @@ import moment from 'moment'
 
 
 class Clock extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
-    this.state = {
-      time: moment().format('YYYY-MM-DD HH:mm:ss')
-    }
+    this.state = {time: moment().format('YYYY-MM-DD HH:mm:ss')}
   }
 
 
-  componentDidMount() {
+  componentDidMount () {
     this.clock = setInterval(
       () => this.trick(),
       1000
     )
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     console.log('我开始行动了')
     clearInterval(this.clock)
   }
 
-  trick() {
-    this.setState({
-      time: moment().format('YYYY-MM-DD HH:mm:ss')
-    })
+  trick () {
+    this.setState({time: moment().format('YYYY-MM-DD HH:mm:ss')})
   }
 
-  render() {
+  render () {
     return (
       <div>
         <p className="clock">{this.state.time}</p>
@@ -39,21 +35,17 @@ class Clock extends React.Component {
 }
 
 class Box extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
-    this.state = {
-      showClock: true
-    }
+    this.state = {showClock: true}
     this.removeClock = this.removeClock.bind(this)
   }
 
-  removeClock() {
-    this.setState({
-      showClock: false
-    })
+  removeClock () {
+    this.setState({showClock: false})
   }
 
-  render() {
+  render () {
     return (
       <div>
         { this.state.showClock ? <Clock/> : null}

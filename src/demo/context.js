@@ -1,8 +1,9 @@
 const PropTypes = require('prop-types');
+
 import React from 'react';
 
 class Button extends React.Component {
-  render() {
+  render () {
     return (
       <button style={{background: this.context.color}}>
         {this.props.children}
@@ -11,12 +12,10 @@ class Button extends React.Component {
   }
 }
 
-Button.contextTypes = {
-  color: PropTypes.string
-};
+Button.contextTypes = {color: PropTypes.string};
 
 class Message extends React.Component {
-  render() {
+  render () {
     console.log(this.props)
     return (
       <div>
@@ -27,21 +26,20 @@ class Message extends React.Component {
 }
 
 class MessageList extends React.Component {
-  getChildContext() {
-    return {color: "purple"};
+  getChildContext () {
+    return {color: 'purple'};
   }
 
-  render() {
-    const children = this.props.messages.map((message) =>
+  render () {
+    const children = this.props.messages.map(message =>
       <Message text={message.text} key={message.text}/>
     );
+
     return <div>{children}</div>;
   }
 }
 
-MessageList.childContextTypes = {
-  color: PropTypes.string
-};
+MessageList.childContextTypes = {color: PropTypes.string};
 
 export default MessageList
 

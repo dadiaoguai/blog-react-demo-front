@@ -1,11 +1,13 @@
 import {actionType} from '../config'
 
-export const login = (username, password) => ({
-  type: actionType.login,
-  username,
-  password
-})
+export const login = (username, password) => {
+  return {
+    type: actionType.login,
+    username,
+    password
+  } 
+}
 
-export const logout = () => ({
-  type: actionType.logout
-})
+export const logout = () => {
+  return {type: actionType.logout} 
+}

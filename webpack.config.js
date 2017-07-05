@@ -1,15 +1,20 @@
+/* eslint-disable */
+
 const webpack = require('webpack')
 , path = require('path')
 
 module.exports = function () {
   return {
-    entry: {
-      bundle: './src/index.js'
-    },
+    entry: [
+      'webpack-hot-middleware/client?overlay=false&reload=true',
+      'react-hot-loader/patch',
+      './src/index'
+    ],
+
     output: {
       filename: '[name].js',
       path: path.resolve(__dirname, 'dist'),
-      publicPath: '/dist/'
+      publicPath: '/'
     },
     module: {
       rules: [
@@ -63,12 +68,14 @@ module.exports = function () {
       }),
       new webpack.optimize.CommonsChunkPlugin({
         name: 'manifest' // 放置 common runtime code
-      })
+      }),
+      new webpack.HotModuleReplacementPlugin(), // Enable HMR,
+      new webpack.NoEmitOnErrorsPlugin()
     ],
     devServer: {
       hot: true,
       historyApiFallback: true
     },
-    devtool: "source-map"
+    devtool: "eval"
   }
 }
