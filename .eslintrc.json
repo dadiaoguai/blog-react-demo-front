@@ -81,7 +81,7 @@
         "id-match": "error",
         "indent": ["error", 2],
         "init-declarations": "off",
-        "jsx-quotes": "error",
+        "jsx-quotes": ["error", "prefer-single"],
         "key-spacing": "error",
         "keyword-spacing": [
             "error",
@@ -111,7 +111,7 @@
             "always"
         ],
         "newline-per-chained-call": "off",
-        "no-alert": "error",
+        "no-alert": "warn",
         "no-array-constructor": "error",
         "no-await-in-loop": "error",
         "no-bitwise": "error",

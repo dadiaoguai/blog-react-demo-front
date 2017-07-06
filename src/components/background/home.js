@@ -3,7 +3,7 @@ import {
   Redirect,
   Route
 } from 'react-router-dom'
-import Header from '../common/header'
+import Header from './header'
 import ArticleManagement from './articleManagement'
 import NewArticle from './newArticle'
 

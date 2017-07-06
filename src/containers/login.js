@@ -1,13 +1,9 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
+import {Redirect, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
 import _ from 'lodash'
-import axios from 'axios'
 import {login} from '../actions'
-import config from '../config'
-
-const loginUrl = `${config.localhost}login`
+import {axiosInstance as axios} from '../config'
 
 class LoginBar extends React.Component {
   constructor (props) {
@@ -28,7 +24,7 @@ class LoginBar extends React.Component {
     }
 
     let run = async () => {
-      let {data} = await axios.post(loginUrl, {
+      let {data, headers, request} = await axios.post('login', {
         username,
         password
       })

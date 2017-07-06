@@ -4,10 +4,8 @@ import {
   Link,
   withRouter
 } from 'react-router-dom'
-import axios from 'axios'
-import config from '../../config'
-import {logout} from '../../actions'
-const logoutUrl = `${config.localhost}logout`
+import {axiosInstance as axios} from '../../config'
+import {logout} from '../../actions/index'
 
 class Header extends React.Component {
   constructor (props) {
@@ -18,12 +16,14 @@ class Header extends React.Component {
   logout (e) {
     let {dispatch} = this.props
     let run = async () => {
-      let {data} = await axios.put(logoutUrl, {})
+      let {data} = await axios.put('logout')
 
       if (data.status === 'success') {
         dispatch(logout())
-        return <Redirect to="/login"/>
+        return <Redirect to='/login'/>
       }
+
+      return null
     }
 
     run().catch(err => console.log(err))
@@ -34,10 +34,10 @@ class Header extends React.Component {
     return (
       <header>
         <nav>
-          <Link to="/backend/articles/index"><span className="first">文章管理</span></Link>
-          <Link to="/backend/tags/index"><span className="first">标签管理</span></Link>
+          <Link to='/backend/articles/index'><span className='first'>文章管理</span></Link>
+          <Link to='/backend/tags/index'><span className='first'>标签管理</span></Link>
         </nav>
-        <button onClick={this.logout} className="btn btn-default">登出</button>
+        <button onClick={this.logout} className='btn btn-default'>登出</button>
       </header>
     )
   }
