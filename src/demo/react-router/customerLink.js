@@ -12,11 +12,11 @@ class CustomerLinkExample extends React.Component {
   render () {
     return (
       <div>
-        <OldSchoolMenuLink activeOnlyExact={true} to="/" label="Home"/>
-        <OldSchoolMenuLink to="/about" label="About"/>
+        <OldSchoolMenuLink activeOnlyExact={true} to='/' label='Home'/>
+        <OldSchoolMenuLink to='/about' label='About'/>
         <hr/>
-        <Route path="/" component={Home}/>
-        <Route path="/about" component={About}/>
+        <Route path='/' component={Home}/>
+        <Route path='/about' component={About}/>
       </div>
     )
   }

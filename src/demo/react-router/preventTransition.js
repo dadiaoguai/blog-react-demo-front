@@ -10,14 +10,14 @@ class Example extends React.Component {
     return (
       <div>
         <ul>
-          <li><Link to="/">Form</Link></li>
-          <li><Link to="/one">One</Link></li>
-          <li><Link to="/two">Two</Link></li>
+          <li><Link to='/'>Form</Link></li>
+          <li><Link to='/one'>One</Link></li>
+          <li><Link to='/two'>Two</Link></li>
         </ul>
         <hr/>
-        <Route exact path="/" component={Form}/>
-        <Route path="/one" render={() => <h3>One</h3>}/>
-        <Route path="/two" render={() => <h3>Two</h3>}/>
+        <Route exact path='/' component={Form}/>
+        <Route path='/one' render={() => <h3>One</h3>}/>
+        <Route path='/two' render={() => <h3>Two</h3>}/>
         <Route/>
       </div>
     )
@@ -43,7 +43,7 @@ class Form extends React.Component {
           Blocking? {isBlocking ? 'Yes, click a link or the back button' : 'Nope'}
         </p>
         <div>
-          <input type="text" onChange={event => {
+          <input type='text' onChange={event => {
             this.setState({isBlocking: event.target.value.length > 0})
           }}/>
         </div>

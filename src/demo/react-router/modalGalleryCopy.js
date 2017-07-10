@@ -62,11 +62,11 @@ class Box extends React.Component {
     return (
       <div>
         <Switch location={IsModal ? this.previousLocation : location}>
-          <Route exact path="/" component={Home}/>
-          <Route path="/gallery" component={Gallery}/>
-          <Route path="/img/:id" component={ImageView}/>
+          <Route exact path='/' component={Home}/>
+          <Route path='/gallery' component={Gallery}/>
+          <Route path='/img/:id' component={ImageView}/>
         </Switch>
-        {IsModal ? <Route path="/img/:id" component={Modal}/> : null}
+        {IsModal ? <Route path='/img/:id' component={Modal}/> : null}
       </div>
 
     )
@@ -78,11 +78,11 @@ class Home extends React.Component {
   render () {
     return (
       <div>
-        <Link to="/gallery">visit the Gallery</Link>
+        <Link to='/gallery'>visit the Gallery</Link>
         <h2>Featured Images</h2>
         <ul>
-          <li><Link to="/img/2">Tomato</Link></li>
-          <li><Link to="/img/4">Crimson</Link></li>
+          <li><Link to='/img/2'>Tomato</Link></li>
+          <li><Link to='/img/4'>Crimson</Link></li>
         </ul>
       </div>
     )
@@ -113,7 +113,7 @@ class ImageView extends React.Component {
           background: img.color
         }}
       >
-        <button type="button" onClick={this.goBack}>返回</button>
+        <button type='button' onClick={this.goBack}>返回</button>
       </div>
     )
   }
@@ -172,7 +172,7 @@ class Modal extends React.Component {
           background: 'rgba(0, 0, 0, 0.15)'
         }}
       >
-        <div className="modal" style={{
+        <div className='modal' style={{
           position: 'absolute',
           background: '#fff',
           top: 25,
@@ -183,7 +183,7 @@ class Modal extends React.Component {
         }}>
           <h1>{image.title}</h1>
           <Image color={image.color} />
-          <button type="button" onClick={back}>
+          <button type='button' onClick={back}>
             Close
           </button>
         </div>

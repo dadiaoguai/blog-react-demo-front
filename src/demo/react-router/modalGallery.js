@@ -35,11 +35,11 @@ class ModalSwitch extends React.Component {
     return (
       <div>
         <Switch location={isModal ? this.previousLocation : location}>
-          <Route exact path="/" component={Home}/>
-          <Route path="/gallery" component={Gallery}/>
-          <Route path="/img/:id" component={ImageView}/>
+          <Route exact path='/' component={Home}/>
+          <Route path='/gallery' component={Gallery}/>
+          <Route path='/img/:id' component={ImageView}/>
         </Switch>
-        {isModal ? <Route path="/img/:id" component={Modal}/> : null}
+        {isModal ? <Route path='/img/:id' component={Modal}/> : null}
       </div>
     )
   }
@@ -91,11 +91,11 @@ const Image = ({color}) =>
 
 const Home = () => 
   <div>
-    <Link to="/gallery">Visit the Gallery</Link>
+    <Link to='/gallery'>Visit the Gallery</Link>
     <h2>Featured Images</h2>
     <ul>
-      <li><Link to="/img/2">Tomato</Link></li>
-      <li><Link to="/img/4">Crimson</Link></li>
+      <li><Link to='/img/2'>Tomato</Link></li>
+      <li><Link to='/img/4'>Crimson</Link></li>
     </ul>
   </div>
 
@@ -157,7 +157,7 @@ const Modal = ({match, history}) => {
       }}
     >
       <div
-        className="modal"
+        className='modal'
         style={{
           position: 'absolute',
           background: '#fff',
@@ -170,7 +170,7 @@ const Modal = ({match, history}) => {
       >
         <h1>{image.title}</h1>
         <Image color={image.color}/>
-        <button type="button" onClick={back}>Close</button>
+        <button type='button' onClick={back}>Close</button>
       </div>
     </div>
   )

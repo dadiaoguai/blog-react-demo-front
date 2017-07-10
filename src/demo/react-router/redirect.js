@@ -97,12 +97,12 @@ class AuthExample extends React.Component {
         <div>
           <AuthButton/>
           <ul>
-            <li><Link to="/public">Public Path</Link></li>
-            <li><Link to="/protected">Protected Page</Link></li>
+            <li><Link to='/public'>Public Path</Link></li>
+            <li><Link to='/protected'>Protected Page</Link></li>
           </ul>
-          <Route path="/public" component={Public} />
-          <Route path="/login" component={Login} />
-          <PrivateRoute1 path="/protected" component={Protected} />
+          <Route path='/public' component={Public} />
+          <Route path='/login' component={Login} />
+          <PrivateRoute1 path='/protected' component={Protected} />
         </div>
       </Router>
     )

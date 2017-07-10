@@ -69,16 +69,16 @@ const BasicExample = () =>
   <Router>
     <div>
       <ul>
-        <li><Link to="/">主页</Link></li>
-        <li><Link to="/about">关于</Link></li>
-        <li><Link to="/topics">其他</Link></li>
+        <li><Link to='/'>主页</Link></li>
+        <li><Link to='/about'>关于</Link></li>
+        <li><Link to='/topics'>其他</Link></li>
       </ul>
 
       <hr/>
 
-      <Route exact path="/" component={Home}/>
-      <Route path="/about" component={About}/>
-      <Route path="/topics" component={Topics}/>
+      <Route exact path='/' component={Home}/>
+      <Route path='/about' component={About}/>
+      <Route path='/topics' component={Topics}/>
     </div>
   </Router>
 

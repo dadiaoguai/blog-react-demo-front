@@ -28,7 +28,7 @@ class Clock extends React.Component {
   render () {
     return (
       <div>
-        <p className="clock">{this.state.time}</p>
+        <p className='clock'>{this.state.time}</p>
       </div>
     )
   }
@@ -49,7 +49,7 @@ class Box extends React.Component {
     return (
       <div>
         { this.state.showClock ? <Clock/> : null}
-        <button type="button" onClick={this.removeClock}>移除时钟</button>
+        <button type='button' onClick={this.removeClock}>移除时钟</button>
       </div>
     )
   }

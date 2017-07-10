@@ -21,20 +21,20 @@ import {
 
 const AnimationExample = () => 
   <div style={styles.fill}>
-    <Route exact path="/" render={() => 
-      <Redirect to="/10/90/50"/>
+    <Route exact path='/' render={() =>
+      <Redirect to='/10/90/50'/>
     }/>
 
     <ul style={styles.nav}>
-      <NavLink to="/10/90/50">Red</NavLink>
-      <NavLink to="/120/100/40">Green</NavLink>
-      <NavLink to="/200/100/40">Blue</NavLink>
-      <NavLink to="/310/100/50">Pink</NavLink>
+      <NavLink to='/10/90/50'>Red</NavLink>
+      <NavLink to='/120/100/40'>Green</NavLink>
+      <NavLink to='/200/100/40'>Blue</NavLink>
+      <NavLink to='/310/100/50'>Pink</NavLink>
     </ul>
 
     <div style={styles.content}>
       <CSSTransitionGroup
-        transitionName="fade"
+        transitionName='fade'
         transitionEnterTimeout={300}
         transitionLeaveTimeout={300}
       >
@@ -45,7 +45,7 @@ const AnimationExample = () =>
          as it animates out
          */}
         <Route
-          path="/:h/:s/:l"
+          path='/:h/:s/:l'
           component={HSL}
         />
       </CSSTransitionGroup>

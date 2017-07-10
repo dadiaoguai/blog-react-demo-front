@@ -53,17 +53,17 @@ class LoginBar extends React.Component {
       return <Redirect to={from}/>
     }
     return  (
-      <div className="login-bar">
-        <p className="message">{this.state.message}</p>
-        <div className="child top25">
+      <div className='login-bar'>
+        <p className='message'>{this.state.message}</p>
+        <div className='child top25'>
           <label>账号:</label>
-          <input type="text" ref={input => this.username = input}/>
+          <input type='text' ref={input => this.username = input}/>
         </div>
-        <div className="child">
+        <div className='child'>
           <label>密码:</label>
-          <input type="password" ref={input => this.password = input}/>
+          <input type='password' ref={input => this.password = input}/>
         </div>
-        <button className="button" type="button" onClick={this.onSubmit}>提交</button>
+        <button className='button' type='button' onClick={this.onSubmit}>提交</button>
       </div>
     )
   }

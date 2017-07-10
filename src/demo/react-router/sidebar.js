@@ -40,9 +40,9 @@ class Example extends React.Component {
               padding: 0
             }}
           >
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/bubblegum">Bubblegum</Link></li>
-            <li><Link to="/shoelaces">Shoelaces</Link></li>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/bubblegum'>Bubblegum</Link></li>
+            <li><Link to='/shoelaces'>Shoelaces</Link></li>
           </ul>
           {routes.map((route, index) =>
             <Route
