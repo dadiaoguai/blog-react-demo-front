@@ -49,6 +49,7 @@ class LoginBar extends React.Component {
     const {from} = this.props.location.state || {from: {pathname: '/backend/home'}}
     const {active} = this.props
 
+
     if (active) {
       return <Redirect to={from}/>
     }

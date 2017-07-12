@@ -20,7 +20,6 @@ class Header extends React.Component {
 
       if (data.status === 'success') {
         dispatch(logout())
-        return <Redirect to='/login'/>
       }
 
       return null

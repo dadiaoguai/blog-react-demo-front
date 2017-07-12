@@ -11,6 +11,7 @@ class NewArticle extends React.Component {
       author: '',
       content: '',
       tags: [],
+      createdSu
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -31,6 +32,8 @@ class NewArticle extends React.Component {
   }
 
   handleSubmit (e) {
+    let {history} = this.props
+
     e.preventDefault()
     if (!this.state.title) {
       return window.alert('标题不允许为空!')
@@ -45,9 +48,8 @@ class NewArticle extends React.Component {
       .then(response => {
         let {data} = response
 
-        console.log(data)
         if (data.status === 'success') {
-          <Redirect to='/backend/articles/index'/>
+          history.goBack()
         } else {
           window.alert(`创建文章失败: ${data.msg}`)
         }
