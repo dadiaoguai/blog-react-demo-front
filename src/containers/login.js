@@ -46,7 +46,7 @@ class LoginBar extends React.Component {
   }
 
   render () {
-    const {from} = this.props.location.state || {from: {pathname: '/backend/home'}}
+    const {from} = this.props.location.state || {from: {pathname: '/backend'}}
     const {active} = this.props
 
 

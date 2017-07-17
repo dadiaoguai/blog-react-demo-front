@@ -20,6 +20,8 @@ class BackendHome extends React.Component {
       <div>
         <Header dispatch={dispatch}/>
         <main className='backend'>
+          <Redirect from='/backend' to='/backend/articles/index'/>
+
           <Route path='/backend/articles/index' component={ArticleManagement}/>
           <Route path='/backend/articles/new' component={NewArticle}/>
         </main>

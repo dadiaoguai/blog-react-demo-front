@@ -11,7 +11,6 @@ class NewArticle extends React.Component {
       author: '',
       content: '',
       tags: [],
-      createdSu
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
