@@ -45,7 +45,7 @@
         "callback-return": ["error", ["done", "cb"]],  // cb 需要加返回
         "camelcase": "error", // 驼峰式命名
         "capitalized-comments": "off",
-        "class-methods-use-this": "error", // class 中必须使用 this
+        "class-methods-use-this": "off", // class 中必须使用 this
         "comma-dangle": ["error", "only-multiline"],
         "comma-spacing": ["error", { "before": false, "after": true }],
         "comma-style": ["error", "last"], // 对象逗号 在每行的后面

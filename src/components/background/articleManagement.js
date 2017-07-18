@@ -7,9 +7,8 @@ import {axiosInstance as axios} from '../../config'
 class ArticleManagement extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {
-      articles: []
-    }
+    this.state = {articles: []}
+    this.deleteArticle = this.deleteArticle.bind(this)
   }
 
   componentDidMount () {
@@ -27,6 +26,36 @@ class ArticleManagement extends React.Component {
       .catch(err => console.log(err))
   }
 
+  deleteArticle (e) {
+    e.preventDefault()
+    let id = e.target.dataset.value
+
+    axios
+      .delete(`articles/${id}`)
+      .then(response => {
+        let {data} = response
+
+        if (data.status === 'success' && data.objs[0] !== 0) {
+          console.log('更新成功')
+          axios
+            .get('articles')
+            .then(response => {
+              let {data} = response
+
+              if (data.status === 'success') {
+                this.setState({articles: data.objs})
+              } else {
+                console.log(data.msg)
+              }
+            })
+            .catch(err => console.log(err))
+        } else {
+          console.log(data.msg)
+        }
+      })
+      .catch(err => console.log(err))
+  }
+
   render () {
     const articles = this.state.articles.map(article =>
       <tr key={article.id}>
@@ -35,8 +64,8 @@ class ArticleManagement extends React.Component {
         <td>{article.createdAt}</td>
         <td>{article.updatedAt}</td>
         <td>
-          <Link to='/backend/articles/new'>编辑</Link>
-          <a href='javascript:;'>删除</a>
+          <Link to={`/backend/articles/${article.id}`}>编辑</Link>
+          <a href='javascript:;' data-value={article.id} onClick={this.deleteArticle}>删除</a>
         </td>
       </tr>
     )

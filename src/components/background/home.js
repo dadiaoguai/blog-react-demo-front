@@ -1,11 +1,13 @@
 import React from 'react'
 import {
   Redirect,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom'
 import Header from './header'
 import ArticleManagement from './articleManagement'
 import NewArticle from './newArticle'
+import ArticleDetail from './articleDetail'
 
 class BackendHome extends React.Component {
 
@@ -22,8 +24,11 @@ class BackendHome extends React.Component {
         <main className='backend'>
           <Redirect from='/backend' to='/backend/articles/index'/>
 
-          <Route path='/backend/articles/index' component={ArticleManagement}/>
-          <Route path='/backend/articles/new' component={NewArticle}/>
+          <Switch>
+            <Route exact path='/backend/articles/index' component={ArticleManagement}/>
+            <Route exact  path='/backend/articles/new' component={NewArticle}/>
+            <Route path='/backend/articles/:id' component={ArticleDetail}/>
+          </Switch>
         </main>
       </div>
     )
