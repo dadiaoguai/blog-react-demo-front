@@ -14,6 +14,7 @@ class ArticleDetail extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleTags = this.handleTags.bind(this)
   }
 
   componentDidMount () {
@@ -29,7 +30,8 @@ class ArticleDetail extends React.Component {
           this.setState({
             title: article.title,
             author: article.author,
-            content: article.content
+            content: article.content,
+            tags: article.tags.map(tag => tag.name)
           })
         } else {
           console.log(data.msg)
@@ -52,30 +54,31 @@ class ArticleDetail extends React.Component {
     this.setState({[key]: e.target.value})
   }
 
+  handleTags (e) {
+    let value = e.target.value.split(',')
+
+    this.setState({tags: value.map(i => i.trim())})
+  }
+
   handleSubmit (e) {
-    let {history} = this.props
+    let {history, match} = this.props
 
     e.preventDefault()
     if (!this.state.title) {
       return window.alert('标题不允许为空!')
     }
-    let {title, author, content} = this.state
 
-    return axios.post('articles', {
-      title,
-      author,
-      content
-    })
+    return axios.put(`articles/${match.params.id}`, this.state)
       .then(response => {
         let {data} = response
 
         if (data.status === 'success') {
           history.goBack()
         } else {
-          window.alert(`创建文章失败: ${data.msg}`)
+          window.alert(`更新文章失败: ${data.msg}`)
         }
       })
-      .catch(err => window.alert(`创建失败, ${err.message}`))
+      .catch(err => window.alert(`更新失败, ${err.message}`))
   }
 
   render () {
@@ -97,7 +100,7 @@ class ArticleDetail extends React.Component {
         </div>
         <div className='form-group'>
           <label>标签</label>
-          <input type='text' className='form-control' value={tags}/>
+          <input type='text' className='form-control' value={tags} onChange={this.handleTags}/>
         </div>
         <button type='submit' className='btn btn-default'>Submit</button>
         <a href='javascript:;' className='btn btn-default' onClick={this.back}>返回</a>

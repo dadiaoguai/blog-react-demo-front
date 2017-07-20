@@ -14,6 +14,7 @@ class NewArticle extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleTags = this.handleTags.bind(this)
   }
 
   back (e) {
@@ -30,6 +31,12 @@ class NewArticle extends React.Component {
     this.setState({[key]: e.target.value})
   }
 
+  handleTags (e) {
+    let value = e.target.value.split(',')
+
+    this.setState({tags: value.map(i => i.trim())})
+  }
+
   handleSubmit (e) {
     let {history} = this.props
 
@@ -37,13 +44,8 @@ class NewArticle extends React.Component {
     if (!this.state.title) {
       return window.alert('标题不允许为空!')
     }
-    let {title, author, content} = this.state
 
-    return axios.post('articles', {
-      title, 
-      author, 
-      content
-    })
+    axios.post('articles', this.state)
       .then(response => {
         let {data} = response
 
@@ -75,7 +77,7 @@ class NewArticle extends React.Component {
         </div>
         <div className='form-group'>
           <label>标签</label>
-          <input type='text' className='form-control' value={tags}/>
+          <input type='text' className='form-control' value={tags} onChange={this.handleTags}/>
         </div>
         <button type='submit' className='btn btn-default'>Submit</button>
         <a href='javascript:;' className='btn btn-default' onClick={this.back}>返回</a>
