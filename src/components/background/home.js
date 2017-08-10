@@ -15,19 +15,19 @@ class BackendHome extends React.Component {
     const {account, match, dispatch} = this.props
 
     if (!account.active) {
-      return <Redirect from={match.path} to='/login'/>
+      return <Redirect from={match.path} to="/login"/>
     }
 
     return (
       <div>
         <Header dispatch={dispatch}/>
-        <main className='backend'>
-          <Redirect from='/backend' to='/backend/articles/index'/>
+        <main className="backend">
+          <Redirect from="/backend" to="/backend/articles/index"/>
 
           <Switch>
-            <Route exact path='/backend/articles/index' component={ArticleManagement}/>
-            <Route exact  path='/backend/articles/new' component={NewArticle}/>
-            <Route path='/backend/articles/:id' component={ArticleDetail}/>
+            <Route exact path="/backend/articles/index" component={ArticleManagement}/>
+            <Route exact  path="/backend/articles/new" component={NewArticle}/>
+            <Route path="/backend/articles/:id" component={ArticleDetail}/>
           </Switch>
         </main>
       </div>

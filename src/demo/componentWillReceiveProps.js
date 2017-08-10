@@ -29,8 +29,8 @@ class Box2 extends React.Component {
   render () {
     return (
       <div>
-        <Box1 msg={this.state.msg} value='哈哈哈'/>
-        <input type='text' value={this.state.msg} onChange={this.getMsg}/>
+        <Box1 msg={this.state.msg} value="哈哈哈"/>
+        <input type="text" value={this.state.msg} onChange={this.getMsg}/>
       </div>
     )
   }

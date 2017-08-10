@@ -1,6 +1,6 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
-import {axiosInstance as axios} from '../../config'
+import {axiosInstance as axios, marked} from '../../config'
 
 class NewArticle extends React.Component {
   constructor (props) {
@@ -11,10 +11,13 @@ class NewArticle extends React.Component {
       author: '',
       content: '',
       tags: [],
+      preview: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleTags = this.handleTags.bind(this)
+    this.openPreview = this.openPreview.bind(this)
+    this.closePreview = this.closePreview.bind(this)
   }
 
   back (e) {
@@ -45,7 +48,7 @@ class NewArticle extends React.Component {
       return window.alert('标题不允许为空!')
     }
 
-    axios.post('articles', this.state)
+    return axios.post('articles', this.state)
       .then(response => {
         let {data} = response
 
@@ -58,32 +61,57 @@ class NewArticle extends React.Component {
       .catch(err => window.alert(`创建失败, ${err.message}`))
   }
 
+  openPreview (e) {
+    this.setState({preview: true})
+  }
+
+  closePreview (e) {
+    this.setState({preview: false})
+  }
+
   render () {
     let tags = this.state.tags.join(',')
+    let preview = this.state.preview
+    console.log(preview)
 
     return (
-      <form className='form' onSubmit={this.handleSubmit}>
-        <div className='form-group'>
-          <label>标题</label>
-          <input type='text' className='form-control' value={this.state.title} id='b_title' onChange={this.handleChange}/>
-        </div>
-        <div className='form-group'>
-          <label>作者</label>
-          <input type='text' className='form-control' value={this.state.author} id='b_author' onChange={this.handleChange}/>
-        </div>
-        <div className='form-group'>
-          <label>内容</label>
-          <textarea className='form-control' rows='15' value={this.state.content} id='b_content' onChange={this.handleChange}/>
-        </div>
-        <div className='form-group'>
-          <label>标签</label>
-          <input type='text' className='form-control' value={tags} onChange={this.handleTags}/>
-        </div>
-        <button type='submit' className='btn btn-default'>Submit</button>
-        <a href='javascript:;' className='btn btn-default' onClick={this.back}>返回</a>
-      </form>
+      <div>
+        <form className="form" onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label>标题</label>
+            <input type="text" className="form-control" value={this.state.title} id="b_title" onChange={this.handleChange}/>
+          </div>
+          <div className="form-group">
+            <label>作者</label>
+            <input type="text" className="form-control" value={this.state.author} id="b_author" onChange={this.handleChange}/>
+          </div>
+          <div className="form-group">
+            <label>内容</label>
+            <textarea className="form-control" rows="15" value={this.state.content} id="b_content" onChange={this.handleChange}/>
+          </div>
+          <div className="form-group">
+            <label>标签</label>
+            <input type="text" className="form-control" value={tags} onChange={this.handleTags}/>
+          </div>
+          <a className="btn btn-default" onClick={this.openPreview}>预览</a>
+          <button type="submit" className="btn btn-default">提交</button>
+          <a className="btn btn-default" onClick={this.back}>返回</a>
+        </form>
+        {preview ? <Marked article={this.state}/> : null}
+      </div>
     )
   }
 }
+
+const Marked = ({article}) =>
+  <div>
+    <article>
+      <h3>{article.title}</h3>
+      <p>{article.author}</p>
+      <section>{marked(article.content)}</section>
+    </article>
+    <hr/>
+    <a className="btn btn-default">关闭</a>
+  </div>
 
 export default NewArticle
