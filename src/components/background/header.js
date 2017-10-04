@@ -33,10 +33,10 @@ class Header extends React.Component {
     return (
       <header>
         <nav>
-          <Link to='/backend/articles/index'><span className='first'>文章管理</span></Link>
-          <Link to='/backend/tags/index'><span className='first'>标签管理</span></Link>
+          <Link to="/backend/articles/index"><span className="first">文章管理</span></Link>
+          <Link to="/backend/tags/index"><span className="first">标签管理</span></Link>
         </nav>
-        <button onClick={this.logout} className='btn btn-default'>登出</button>
+        <button onClick={this.logout} className="btn btn-default">登出</button>
       </header>
     )
   }
