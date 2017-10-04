@@ -1,36 +1,36 @@
 import React from 'react'
-import {Redirect, withRouter} from 'react-router-dom'
-import {connect} from 'react-redux'
+import { Redirect, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 import _ from 'lodash'
-import {login} from '../actions'
-import {axiosInstance as axios} from '../config'
+import { login } from '../actions'
+import { axiosInstance as axios } from '../config'
 
 class LoginBar extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
-    this.state = {message: ''}
+    this.state = { message: '' }
     this.onSubmit = this.onSubmit.bind(this)
   }
 
-  onSubmit (e) {
-    let [username, password] = [this.username.value, this.password.value]
-    let {dispatch} = this.props
+  onSubmit(e) {
+    const [username, password] = [this.username.value, this.password.value]
+    const { dispatch } = this.props
 
     e.stopPropagation()
     if (_.isEmpty(username) || _.isEmpty(password)) {
-      this.setState({message: '账号或者密码不允许为空!'})
+      this.setState({ message: '账号或者密码不允许为空!' })
       this.username.value = ''
       this.password.value = ''
     }
 
-    let run = async () => {
-      let {data, headers, request} = await axios.post('login', {
+    const run = async () => {
+      const { data, headers, request } = await axios.post('login', {
         username,
-        password
+        password,
       })
 
       if (data.status === 'failed') {
-        this.setState({message: data.msg})
+        this.setState({ message: data.msg })
         this.username.value = ''
         this.password.value = ''
       } else {
@@ -38,41 +38,39 @@ class LoginBar extends React.Component {
       }
     }
 
-    run().catch(err => {
-      this.setState({message: err.message})
+    run().catch((err) => {
+      this.setState({ message: err.message })
       this.username.value = ''
       this.password.value = ''
     })
   }
 
-  render () {
-    const {from} = this.props.location.state || {from: {pathname: '/backend'}}
-    const {active} = this.props
+  render() {
+    const { from } = this.props.location.state || { from: { pathname: '/backend' } }
+    const { active } = this.props
 
 
     if (active) {
-      return <Redirect to={from}/>
+      return <Redirect to={from} />
     }
-    return  (
-      <div className='login-bar'>
-        <p className='message'>{this.state.message}</p>
-        <div className='child top25'>
+    return (
+      <div className="login-bar">
+        <p className="message">{this.state.message}</p>
+        <div className="child top25">
           <label>账号:</label>
-          <input type='text' ref={input => this.username = input}/>
+          <input type="text" ref={input => this.username = input} />
         </div>
-        <div className='child'>
+        <div className="child">
           <label>密码:</label>
-          <input type='password' ref={input => this.password = input}/>
+          <input type="password" ref={input => this.password = input} />
         </div>
-        <button className='button' type='button' onClick={this.onSubmit}>提交</button>
+        <button className="button" type="button" onClick={this.onSubmit}>提交</button>
       </div>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return {active: state.account.active || false} 
-}
+const mapStateToProps = state => ({ active: state.account.active || false })
 
 const Login = withRouter(connect(mapStateToProps)(LoginBar))
 

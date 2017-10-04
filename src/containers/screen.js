@@ -1,9 +1,7 @@
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import screen from '../components/screen'
 
-const mapStateToProps = state => {
-  return {store: state} 
-}
+const mapStateToProps = state => ({ store: state })
 
 const Screen = connect(mapStateToProps)(screen)
 
