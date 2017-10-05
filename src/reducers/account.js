@@ -1,4 +1,4 @@
-import {actionType} from '../config'
+import { actionType } from '../config'
 
 const Account = (state = {}, action) => {
   switch (action.type) {
@@ -6,7 +6,7 @@ const Account = (state = {}, action) => {
       return {
         username: action.username,
         password: action.password,
-        active: true
+        active: true,
       }
     case actionType.logout:
       return {}

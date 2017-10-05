@@ -1,9 +1,9 @@
 import React from 'react'
 // import {Redirect} from 'react-router-dom'
-import {axiosInstance as axios} from '../../config'
+import { axiosInstance as axios } from '../../config'
 
 class ArticleDetail extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.back = this.back.bind(this)
     this.state = {
@@ -17,21 +17,21 @@ class ArticleDetail extends React.Component {
     this.handleTags = this.handleTags.bind(this)
   }
 
-  componentDidMount () {
-    let {id} = this.props.match.params
+  componentDidMount() {
+    const { id } = this.props.match.params
 
     axios
       .get(`articles/${id}`)
-      .then(response => {
-        let {data} = response
-        let article = data.obj
+      .then((response) => {
+        const { data } = response
+        const article = data.obj
 
         if (data.status === 'success') {
           this.setState({
             title: article.title,
             author: article.author,
             content: article.content,
-            tags: article.tags.map(tag => tag.name)
+            tags: article.tags.map(tag => tag.name),
           })
         } else {
           console.log(data.msg)
@@ -40,28 +40,28 @@ class ArticleDetail extends React.Component {
       .catch(err => console.log(err))
   }
 
-  back (e) {
-    const {history} = this.props
+  back(e) {
+    const { history } = this.props
 
     e.stopPropagation()
     history.goBack()
   }
 
-  handleChange (e) {
+  handleChange(e) {
     e.preventDefault()
-    let key = e.target.id.replace('b_', '')
+    const key = e.target.id.replace('b_', '')
 
-    this.setState({[key]: e.target.value})
+    this.setState({ [key]: e.target.value })
   }
 
-  handleTags (e) {
-    let value = e.target.value.split(',')
+  handleTags(e) {
+    const value = e.target.value.split(',')
 
-    this.setState({tags: value.map(i => i.trim())})
+    this.setState({ tags: value.map(i => i.trim()) })
   }
 
-  handleSubmit (e) {
-    let {history, match} = this.props
+  handleSubmit(e) {
+    const { history, match } = this.props
 
     e.preventDefault()
     if (!this.state.title) {
@@ -69,8 +69,8 @@ class ArticleDetail extends React.Component {
     }
 
     return axios.put(`articles/${match.params.id}`, this.state)
-      .then(response => {
-        let {data} = response
+      .then((response) => {
+        const { data } = response
 
         if (data.status === 'success') {
           history.goBack()
@@ -81,26 +81,26 @@ class ArticleDetail extends React.Component {
       .catch(err => window.alert(`更新失败, ${err.message}`))
   }
 
-  render () {
-    let tags = this.state.tags.join(',')
+  render() {
+    const tags = this.state.tags.join(',')
 
     return (
       <form className="form" onSubmit={this.handleSubmit}>
         <div className="form-group">
           <label>标题</label>
-          <input type="text" className="form-control" value={this.state.title} id="b_title" onChange={this.handleChange}/>
+          <input type="text" className="form-control" value={this.state.title} id="b_title" onChange={this.handleChange} />
         </div>
         <div className="form-group">
           <label>作者</label>
-          <input type="text" className="form-control" value={this.state.author} id="b_author" onChange={this.handleChange}/>
+          <input type="text" className="form-control" value={this.state.author} id="b_author" onChange={this.handleChange} />
         </div>
         <div className="form-group">
           <label>内容</label>
-          <textarea className="form-control" rows="15" value={this.state.content} id="b_content" onChange={this.handleChange}/>
+          <textarea className="form-control" rows="15" value={this.state.content} id="b_content" onChange={this.handleChange} />
         </div>
         <div className="form-group">
           <label>标签</label>
-          <input type="text" className="form-control" value={tags} onChange={this.handleTags}/>
+          <input type="text" className="form-control" value={tags} onChange={this.handleTags} />
         </div>
         <button type="submit" className="btn btn-default">Submit</button>
         <a href="javascript:;" className="btn btn-default" onClick={this.back}>返回</a>

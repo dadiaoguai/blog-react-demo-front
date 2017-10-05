@@ -1,9 +1,9 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
-import {axiosInstance as axios, marked} from '../../config'
+import { Redirect } from 'react-router-dom'
+import { axiosInstance as axios, marked } from '../../config'
 
 class NewArticle extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.back = this.back.bind(this)
     this.state = {
@@ -11,7 +11,7 @@ class NewArticle extends React.Component {
       author: '',
       content: '',
       tags: [],
-      preview: false
+      preview: false,
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -20,28 +20,28 @@ class NewArticle extends React.Component {
     this.closePreview = this.closePreview.bind(this)
   }
 
-  back (e) {
-    const {history} = this.props
+  back(e) {
+    const { history } = this.props
 
     e.stopPropagation()
     history.goBack()
   }
 
-  handleChange (e) {
+  handleChange(e) {
     e.preventDefault()
-    let key = e.target.id.replace('b_', '')
+    const key = e.target.id.replace('b_', '')
 
-    this.setState({[key]: e.target.value})
+    this.setState({ [key]: e.target.value })
   }
 
-  handleTags (e) {
-    let value = e.target.value.split(',')
+  handleTags(e) {
+    const value = e.target.value.split(',')
 
-    this.setState({tags: value.map(i => i.trim())})
+    this.setState({ tags: value.map(i => i.trim()) })
   }
 
-  handleSubmit (e) {
-    let {history} = this.props
+  handleSubmit(e) {
+    const { history } = this.props
 
     e.preventDefault()
     if (!this.state.title) {
@@ -49,8 +49,8 @@ class NewArticle extends React.Component {
     }
 
     return axios.post('articles', this.state)
-      .then(response => {
-        let {data} = response
+      .then((response) => {
+        const { data } = response
 
         if (data.status === 'success') {
           history.goBack()
@@ -61,57 +61,56 @@ class NewArticle extends React.Component {
       .catch(err => window.alert(`创建失败, ${err.message}`))
   }
 
-  openPreview (e) {
-    this.setState({preview: true})
+  openPreview(e) {
+    this.setState({ preview: true })
   }
 
-  closePreview (e) {
-    this.setState({preview: false})
+  closePreview(e) {
+    this.setState({ preview: false })
   }
 
-  render () {
-    let tags = this.state.tags.join(',')
-    let preview = this.state.preview
-    console.log(preview)
+  render() {
+    const tags = this.state.tags.join(',')
+    const preview = this.state.preview
 
     return (
       <div>
         <form className="form" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label>标题</label>
-            <input type="text" className="form-control" value={this.state.title} id="b_title" onChange={this.handleChange}/>
+            <input type="text" className="form-control" value={this.state.title} id="b_title" onChange={this.handleChange} />
           </div>
           <div className="form-group">
             <label>作者</label>
-            <input type="text" className="form-control" value={this.state.author} id="b_author" onChange={this.handleChange}/>
+            <input type="text" className="form-control" value={this.state.author} id="b_author" onChange={this.handleChange} />
           </div>
           <div className="form-group">
             <label>内容</label>
-            <textarea className="form-control" rows="15" value={this.state.content} id="b_content" onChange={this.handleChange}/>
+            <textarea className="form-control" rows="15" value={this.state.content} id="b_content" onChange={this.handleChange} />
           </div>
           <div className="form-group">
             <label>标签</label>
-            <input type="text" className="form-control" value={tags} onChange={this.handleTags}/>
+            <input type="text" className="form-control" value={tags} onChange={this.handleTags} />
           </div>
           <a className="btn btn-default" onClick={this.openPreview}>预览</a>
           <button type="submit" className="btn btn-default">提交</button>
           <a className="btn btn-default" onClick={this.back}>返回</a>
         </form>
-        {preview ? <Marked article={this.state}/> : null}
+        {preview ? <Marked article={this.state} /> : null}
       </div>
     )
   }
 }
 
-const Marked = ({article}) =>
-  <div>
+const Marked = ({ article }) =>
+  (<div>
     <article>
       <h3>{article.title}</h3>
       <p>{article.author}</p>
       <section>{marked(article.content)}</section>
     </article>
-    <hr/>
+    <hr />
     <a className="btn btn-default">关闭</a>
-  </div>
+  </div>)
 
 export default NewArticle

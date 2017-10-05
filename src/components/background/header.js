@@ -2,21 +2,21 @@ import React from 'react'
 import {
   Redirect,
   Link,
-  withRouter
+  withRouter,
 } from 'react-router-dom'
-import {axiosInstance as axios} from '../../config'
-import {logout} from '../../actions/index'
+import { axiosInstance as axios } from '../../config'
+import { logout } from '../../actions/index'
 
 class Header extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.logout = this.logout.bind(this)
   }
 
-  logout (e) {
-    let {dispatch} = this.props
-    let run = async () => {
-      let {data} = await axios.put('logout')
+  logout(e) {
+    const { dispatch } = this.props
+    const run = async () => {
+      const { data } = await axios.put('logout')
 
       if (data.status === 'success') {
         dispatch(logout())
@@ -28,8 +28,7 @@ class Header extends React.Component {
     run().catch(err => console.log(err))
   }
 
-  render () {
-
+  render() {
     return (
       <header>
         <nav>

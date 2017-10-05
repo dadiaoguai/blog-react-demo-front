@@ -1,10 +1,10 @@
 import 'react-hot-loader/patch'
 import React from 'react'
 import ReactDom from 'react-dom'
-import {AppContainer} from 'react-hot-loader'
-import {Provider} from 'react-redux'
-import {createStore} from 'redux'
-import {BrowserRouter as Router} from 'react-router-dom'
+import { AppContainer } from 'react-hot-loader'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import { BrowserRouter as Router } from 'react-router-dom'
 import './styles/normalize.css'
 import './styles/bootstrap.min.css'
 import './styles/style.scss'
@@ -15,7 +15,7 @@ import AppStore from './reducers'
 
 const store = createStore(AppStore)
 
-const render = Component => {
+const render = (Component) => {
   ReactDom.render(
     <AppContainer>
       <Provider store={store}>
@@ -24,7 +24,7 @@ const render = Component => {
         </Router>
       </Provider>
     </AppContainer>,
-    document.getElementById('root')
+    document.getElementById('root'),
   )
 }
 
