@@ -1,24 +1,24 @@
 import React from 'react'
 import {
-  Link
+  Link,
 } from 'react-router-dom'
-import {axiosInstance as axios} from '../../config'
+import { axiosInstance as axios } from '../../config'
 
 class ArticleManagement extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
-    this.state = {articles: []}
+    this.state = { articles: [] }
     this.deleteArticle = this.deleteArticle.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     axios
       .get('articles')
-      .then(response => {
-        let {data} = response
+      .then((response) => {
+        const { data } = response
 
         if (data.status === 'success') {
-          this.setState({articles: data.objs})
+          this.setState({ articles: data.objs })
         } else {
           console.log(data.msg)
         }
@@ -26,24 +26,24 @@ class ArticleManagement extends React.Component {
       .catch(err => console.log(err))
   }
 
-  deleteArticle (e) {
+  deleteArticle(e) {
     e.preventDefault()
-    let id = e.target.dataset.value
+    const id = e.target.dataset.value
 
     axios
       .delete(`articles/${id}`)
-      .then(response => {
-        let {data} = response
+      .then((response) => {
+        const { data } = response
 
         if (data.status === 'success' && data.objs[0] !== 0) {
           console.log('更新成功')
           axios
             .get('articles')
-            .then(response => {
-              let {data} = response
+            .then((response) => {
+              const { data } = response
 
               if (data.status === 'success') {
-                this.setState({articles: data.objs})
+                this.setState({ articles: data.objs })
               } else {
                 console.log(data.msg)
               }
@@ -56,26 +56,26 @@ class ArticleManagement extends React.Component {
       .catch(err => console.log(err))
   }
 
-  render () {
+  render() {
     const articles = this.state.articles.map(article =>
-      <tr key={article.id}>
-        <td>{article.title}</td>
+      (<tr key={article.id}>
+        <td><Link to={`/backend/articles/${article.id}`}>{article.title}</Link></td>
         <td>{article.author}</td>
         <td>{article.createdAt}</td>
         <td>{article.updatedAt}</td>
         <td>
-          <Link to={`/backend/articles/${article.id}`}>编辑</Link>
-          <a href='javascript:;' data-value={article.id} onClick={this.deleteArticle}>删除</a>
+          <Link to={`/backend/articles/${article.id}`} className="marginRight-5px">编辑</Link>
+          <a href="javascript:;" data-value={article.id} onClick={this.deleteArticle}>删除</a>
         </td>
-      </tr>
+      </tr>),
     )
 
     return (
       <div>
-        <Link to='/backend/articles/new'>
-          <span className='btn btn-default new'>新增</span>
+        <Link to="/backend/articles/new">
+          <span className="btn btn-default new">新增</span>
         </Link>
-        <table className='table table-bordered'>
+        <table className="table table-bordered">
           <thead>
             <tr>
               <th>文章标题</th>

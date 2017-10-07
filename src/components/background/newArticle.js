@@ -1,6 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import { axiosInstance as axios, marked } from '../../config'
+import { axiosInstance as axios, md } from '../../config'
 
 class NewArticle extends React.Component {
   constructor(props) {
@@ -11,13 +11,10 @@ class NewArticle extends React.Component {
       author: '',
       content: '',
       tags: [],
-      preview: false,
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleTags = this.handleTags.bind(this)
-    this.openPreview = this.openPreview.bind(this)
-    this.closePreview = this.closePreview.bind(this)
   }
 
   back(e) {
@@ -61,17 +58,9 @@ class NewArticle extends React.Component {
       .catch(err => window.alert(`创建失败, ${err.message}`))
   }
 
-  openPreview(e) {
-    this.setState({ preview: true })
-  }
-
-  closePreview(e) {
-    this.setState({ preview: false })
-  }
-
   render() {
     const tags = this.state.tags.join(',')
-    const preview = this.state.preview
+    const { title, content } = this.state
 
     return (
       <div>
@@ -92,25 +81,24 @@ class NewArticle extends React.Component {
             <label>标签</label>
             <input type="text" className="form-control" value={tags} onChange={this.handleTags} />
           </div>
-          <a className="btn btn-default" onClick={this.openPreview}>预览</a>
           <button type="submit" className="btn btn-default">提交</button>
           <a className="btn btn-default" onClick={this.back}>返回</a>
         </form>
-        {preview ? <Marked article={this.state} /> : null}
+        <br />
+        <MarkdownPreview title={title} content={content} />
       </div>
     )
   }
 }
 
-const Marked = ({ article }) =>
-  (<div>
-    <article>
-      <h3>{article.title}</h3>
-      <p>{article.author}</p>
-      <section>{marked(article.content)}</section>
-    </article>
+const htmlContent = content => ({ __html: md.render(content) })
+
+const MarkdownPreview = ({ title, content }) => (
+  <div className="preview-article">
+    <h3>{title}</h3>
     <hr />
-    <a className="btn btn-default">关闭</a>
-  </div>)
+    <article dangerouslySetInnerHTML={htmlContent(content)} />
+  </div>
+)
 
 export default NewArticle
