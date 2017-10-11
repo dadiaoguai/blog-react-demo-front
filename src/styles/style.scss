@@ -1,9 +1,17 @@
+html {
+    font-size: inherit;
+}
+
 #root {
-    min-width: 1280px;
     width: 100%;
-    min-height: 800px;
     height: 100%;
     position: relative;
+    .headerBackground {
+        background-image: url("../images/home-bg.jpg");
+    }
+    .postBackground {
+        background-image: url("../images/post-bg.jpg")
+    }
 }
 
 .login-bar {
@@ -42,7 +50,7 @@
     }
 }
 
-header {
+.b_header {
     height: 50px;
     background: #E7E9F4;
     display: flex;
@@ -59,7 +67,7 @@ header {
     }
 }
 
-main.backend {
+.backend {
     position: relative;
     width: 80%;
     margin: auto;
@@ -106,4 +114,34 @@ main.backend {
 
 .marginRight-5px {
     margin-right: 5px;
+}
+
+.navbar-toggler {
+    z-index: 1;
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        min-height: inherit;
+    }
+    nav > .container {
+        width: 100%;
+        .navbar-collapse {
+            width: 100%;
+        }
+    }
+}
+
+@media (min-width: 980px) {
+    #root {
+        min-height: 800px;
+        min-width: 1280px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    #mainNav .navbar-brand {
+        color: #fff;
+        padding: 10px !important;
+    }
 }

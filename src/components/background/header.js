@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  Redirect,
   Link,
   withRouter,
 } from 'react-router-dom'
@@ -13,7 +12,7 @@ class Header extends React.Component {
     this.logout = this.logout.bind(this)
   }
 
-  logout(e) {
+  logout() {
     const { dispatch } = this.props
     const run = async () => {
       const { data } = await axios.put('logout')
@@ -30,7 +29,7 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header>
+      <header className="b_header">
         <nav>
           <Link to="/backend/articles/index"><span className="first">文章管理</span></Link>
           <Link to="/backend/tags/index"><span className="first">标签管理</span></Link>
