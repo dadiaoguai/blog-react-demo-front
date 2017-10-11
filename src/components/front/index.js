@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Redirect,
   Route,
-  Link,
+  Switch,
 } from 'react-router-dom'
 import '../../styles/lib/bootstrap/css/bootstrap.min.css'
 import '../../styles/lib/font-awesome/css/font-awesome.min.css'
@@ -18,7 +18,10 @@ class Blog extends React.Component {
     return (
       <div>
         <Navbar />
-        <FrontHome />
+        <Redirect to="/home" />
+        <Switch>
+          <Route path="/home" exact component={FrontHome} />
+        </Switch>
         <Footer />
       </div>
     )

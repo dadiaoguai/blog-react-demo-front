@@ -10,6 +10,7 @@ import Blog from './front'
 
 const App = () =>
   (<div>
+    <Redirect from="/" to="/home" />
     <Route path="/login" component={Login} />
     <Route path="/backend" component={BackendHome} />
     <Route path="/home" component={Blog} />
