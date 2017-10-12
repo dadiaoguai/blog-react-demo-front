@@ -9,16 +9,18 @@ import Header from './header'
 
 
 function Article(props) {
-  const { title, digest, author, createdAt } = props.article
+  const { title, digest, author, createdAt, id } = props.article
   return (
     <div className="row">
       <div className="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
         <div className="post-preview">
-          <a href="post.html">
+          <Link to={`/home/articles/${id}`}>
             <h2 className="post-title">{title}</h2>
             <h3 className="post-subtitle">{digest}</h3>
-          </a>
-          <p className="post-meta">Posted by <a href="#">{author}</a> on {createdAt}</p>
+          </Link>
+          <p className="post-meta">
+            Posted by <a href="#">{author}</a> on {createdAt}
+          </p>
         </div>
         <hr />
       </div>

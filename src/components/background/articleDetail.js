@@ -105,7 +105,7 @@ class ArticleDetail extends React.Component {
             <input type="text" className="form-control" value={tags} onChange={this.handleTags} />
           </div>
           <button type="submit" className="btn btn-default">Submit</button>
-          <a href="javascript:;" className="btn btn-default" onClick={this.back}>返回</a>
+          <a href="#" className="btn btn-default" onClick={this.back}>返回</a>
         </form>
         <br />
         <MarkdownPreview title={title} content={content} />

@@ -11,6 +11,7 @@ import '../../styles/css/clean-blog.min.css'
 import '../../styles/js/clean-blog.min'
 import Navbar from './navbar'
 import FrontHome from './home'
+import Article from './article'
 import Footer from './footer'
 
 class Blog extends React.Component {
@@ -21,6 +22,7 @@ class Blog extends React.Component {
         <Redirect to="/home" />
         <Switch>
           <Route path="/home" exact component={FrontHome} />
+          <Route path="/home/articles/:id" component={Article} />
         </Switch>
         <Footer />
       </div>

@@ -17,6 +17,6 @@
         "semi": "off",
         "react/jsx-filename-extension": "off",
         "jsx-a11y/href-no-hash": "off",
-        "max-len": ["warn", {"code": 120, "ignoreComments": true}]
+        "max-len": ["warn", {"code": 80, "ignoreComments": true, "ignoreUrls": true}]
     }
 }
