@@ -75,7 +75,7 @@ class NewArticle extends React.Component {
           </div>
           <div className="form-group">
             <label>内容</label>
-            <textarea className="form-control" rows="15" value={this.state.content} id="b_content" onChange={this.handleChange} />
+            <textarea className="form-control" rows="25" value={this.state.content} id="b_content" onChange={this.handleChange} />
           </div>
           <div className="form-group">
             <label>标签</label>

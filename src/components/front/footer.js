@@ -3,6 +3,7 @@ import React from 'react'
 function Footer(props) {
   return (
     <footer>
+      <hr />
       <div className="container">
         <div className="row">
           <div className="col-lg-8 offset-lg-2 col-md-10 offset-md-1">

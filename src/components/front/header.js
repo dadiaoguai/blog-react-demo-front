@@ -20,8 +20,7 @@ function Header(props) {
                 introduction ?
                   <span className="subheading">{introduction}</span> :
                   <span className="meta">
-                    Posted by <a href="#">{postInfo.author}</a>
-                    on {postInfo.createdAt}
+                    Posted by <a href="#">{postInfo.author}</a> on {postInfo.createdAt}
                   </span>
               }
             </div>
