@@ -12,6 +12,7 @@ import '../../styles/js/clean-blog.min'
 import Navbar from './navbar'
 import FrontHome from './home'
 import Article from './article'
+import About from './about'
 import Footer from './footer'
 
 class Blog extends React.Component {
@@ -23,6 +24,7 @@ class Blog extends React.Component {
         <Switch>
           <Route path="/home" exact component={FrontHome} />
           <Route path="/home/articles/:id" component={Article} />
+          <Route path="/home/aboutme" component={About} />
         </Switch>
         <Footer />
       </div>

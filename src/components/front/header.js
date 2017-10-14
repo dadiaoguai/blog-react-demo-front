@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 
 function Header(props) {
   const { title, introduction, postInfo } = props
@@ -7,7 +8,7 @@ function Header(props) {
     <header
       className={
         introduction ?
-          'intro-header headerBackground' :
+          `intro-header ${introduction.includes('what') ? 'about' : 'header'}Background` :
           'intro-header postBackground'
       }
     >
@@ -29,6 +30,21 @@ function Header(props) {
       </div>
     </header>
   )
+}
+
+Header.propTypes = {
+  title: propTypes.string,
+  introduction: propTypes.string,
+  postInfo: propTypes.shape({
+    author: propTypes.string,
+    createdAt: propTypes.string,
+  }),
+}
+
+Header.defaultProps = {
+  title: 'blog',
+  introduction: null,
+  postInfo: null,
 }
 
 export default Header

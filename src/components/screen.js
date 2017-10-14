@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 
 const Screen = ({ store }) =>
   (<div style={{
@@ -9,5 +10,13 @@ const Screen = ({ store }) =>
   >
     {JSON.stringify(store, null, 2)}
   </div>)
+
+Screen.propTypes = {
+  store: propTypes.shape({}),
+}
+
+Screen.defaultProps = {
+  store: {},
+}
 
 export default Screen

@@ -1,11 +1,9 @@
 import React from 'react'
 import {
-  Redirect,
-  Route,
   Link,
 } from 'react-router-dom'
 
-function Navbar(props) {
+function Navbar() {
   return (
     <nav
       className="navbar fixed-top navbar-toggleable-md navbar-light"
@@ -32,7 +30,7 @@ function Navbar(props) {
               <Link className="nav-link page-scroll" to="/home">Home</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link page-scroll" href="about.html">About</a>
+              <Link className="nav-link page-scroll" to="/home/aboutme">About</Link>
             </li>
             <li className="nav-item">
               <a className="nav-link page-scroll" href="post.html">

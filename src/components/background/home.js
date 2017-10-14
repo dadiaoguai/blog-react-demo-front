@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import {
   Redirect,
   Route,
@@ -32,6 +33,22 @@ class BackendHome extends React.Component {
       </div>
     )
   }
+}
+
+BackendHome.propTypes = {
+  account: propTypes.shape({
+    active: propTypes.bool,
+  }),
+  match: propTypes.shape({
+    path: propTypes.object,
+  }),
+  dispatch: propTypes.func,
+}
+
+BackendHome.defaultProps = {
+  account: { active: false },
+  match: {},
+  dispatch: () => null,
 }
 
 export default BackendHome

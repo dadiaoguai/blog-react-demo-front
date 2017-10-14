@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import {
   Link,
 } from 'react-router-dom'
@@ -65,7 +66,7 @@ class ArticleManagement extends React.Component {
         <td>{article.updatedAt}</td>
         <td>
           <Link to={`/backend/articles/${article.id}`} className="marginRight-5px">编辑</Link>
-          <a href="javascript:;" data-value={article.id} onClick={this.deleteArticle}>删除</a>
+          <a href="#" data-value={article.id} onClick={this.deleteArticle}>删除</a>
         </td>
       </tr>),
     )
@@ -92,6 +93,14 @@ class ArticleManagement extends React.Component {
       </div>
     )
   }
+}
+
+ArticleManagement.propTypes = {
+  data: propTypes.shape({}),
+}
+
+ArticleManagement.defaultProps = {
+  data: {},
 }
 
 export default ArticleManagement

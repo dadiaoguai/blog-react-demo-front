@@ -1,5 +1,6 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import propTypes from 'prop-types'
+// import { Redirect } from 'react-router-dom'
 import { axiosInstance as axios, md } from '../../config'
 
 class NewArticle extends React.Component {
@@ -82,7 +83,7 @@ class NewArticle extends React.Component {
             <input type="text" className="form-control" value={tags} onChange={this.handleTags} />
           </div>
           <button type="submit" className="btn btn-default">提交</button>
-          <a className="btn btn-default" onClick={this.back}>返回</a>
+          <a href="#" className="btn btn-default" onClick={this.back}>返回</a>
         </form>
         <br />
         <MarkdownPreview title={title} content={content} />
@@ -100,5 +101,27 @@ const MarkdownPreview = ({ title, content }) => (
     <article dangerouslySetInnerHTML={htmlContent(content)} />
   </div>
 )
+
+NewArticle.propTypes = {
+  history: propTypes.shape({
+    goBack: propTypes.func,
+  }),
+}
+
+NewArticle.defaultProps = {
+  history: {
+    goBack: () => null,
+  },
+}
+
+MarkdownPreview.propTypes = {
+  title: propTypes.string,
+  content: propTypes.string,
+}
+
+MarkdownPreview.defaultProps = {
+  title: '',
+  content: '',
+}
 
 export default NewArticle

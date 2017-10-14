@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 // import {Redirect} from 'react-router-dom'
 import { axiosInstance as axios, md } from '../../config'
 
@@ -89,7 +90,7 @@ class ArticleDetail extends React.Component {
       <div>
         <form className="form" onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label>标题</label>
+            <label htmlFor="b_title">标题</label>
             <input type="text" className="form-control" value={this.state.title} id="b_title" onChange={this.handleChange} />
           </div>
           <div className="form-group">
@@ -123,5 +124,37 @@ const MarkdownPreview = ({ title, content }) => (
     <article dangerouslySetInnerHTML={htmlContent(content)} />
   </div>
 )
+
+ArticleDetail.propTypes = {
+  match: propTypes.shape({
+    params: propTypes.shape({
+      id: propTypes.string,
+    }),
+  }),
+  history: propTypes.shape({
+    goBack: propTypes.func,
+  }),
+}
+
+ArticleDetail.defaultProps = {
+  match: {
+    params: {
+      id: '',
+    },
+  },
+  history: {
+    goBack: () => null,
+  },
+}
+
+MarkdownPreview.propTypes = {
+  title: propTypes.string,
+  content: propTypes.string,
+}
+
+MarkdownPreview.defaultProps = {
+  title: '',
+  content: '',
+}
 
 export default ArticleDetail

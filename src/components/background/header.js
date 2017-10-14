@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import {
   Link,
   withRouter,
@@ -38,6 +39,14 @@ class Header extends React.Component {
       </header>
     )
   }
+}
+
+Header.propTypes = {
+  dispatch: propTypes.func,
+}
+
+Header.defaultProps = {
+  dispatch: () => null,
 }
 
 export default withRouter(Header)

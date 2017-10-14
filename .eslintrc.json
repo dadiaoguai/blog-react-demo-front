@@ -17,6 +17,10 @@
         "semi": "off",
         "react/jsx-filename-extension": "off",
         "jsx-a11y/href-no-hash": "off",
-        "max-len": "off"
+        "max-len": "off",
+        "no-console": "off",
+        "no-alert": "off",
+        "jsx-a11y/label-has-for": "off",
+        "no-shadow": "warn"
     }
 }

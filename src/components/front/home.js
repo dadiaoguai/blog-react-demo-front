@@ -1,9 +1,6 @@
 import React from 'react'
-import {
-  Redirect,
-  Route,
-  Link,
-} from 'react-router-dom'
+import propTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import { axiosInstance as axios } from '../../config'
 import Header from './header'
 
@@ -24,6 +21,20 @@ function Article(props) {
   )
 }
 
+Article.propTypes = {
+  article: propTypes.shape({
+    title: propTypes.string,
+    digest: propTypes.string,
+    author: propTypes.string,
+    createdAt: propTypes.string,
+    id: propTypes.number,
+  }),
+}
+
+Article.defaultProps = {
+  article: {},
+}
+
 function Paginaition(props) {
   const { count, page, nextPage, prevPage, limit } = props
   const hasPrev = page > 1
@@ -41,13 +52,28 @@ function Paginaition(props) {
       onClick={nextPage}
     >Older Posts &rarr;</a>)
 
-  console.log(props)
   return (
-    <div className="clearfix">
+    <div className="clearfix" style={{ paddingBottom: '1rem' }}>
       {hasPrev ? prev : ''}
       {hasNext ? next : ''}
     </div>
   )
+}
+
+Paginaition.propTypes = {
+  count: propTypes.number,
+  page: propTypes.number,
+  nextPage: propTypes.func,
+  prevPage: propTypes.func,
+  limit: propTypes.number,
+}
+
+Paginaition.defaultProps = {
+  count: 0,
+  page: 0,
+  limit: 0,
+  nextPage: () => null,
+  prevPage: () => null,
 }
 
 class FrontHome extends React.Component {

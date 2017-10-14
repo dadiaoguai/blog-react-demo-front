@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import { axiosInstance as axios, md } from '../../config'
 import Header from './header'
 
@@ -45,6 +46,22 @@ class Article extends React.Component {
       </div>
     )
   }
+}
+
+Article.propTypes = {
+  match: propTypes.shape({
+    params: propTypes.shape({
+      id: propTypes.number,
+    }),
+  }),
+}
+
+Article.defaultProps = {
+  match: {
+    params: {
+      id: 1,
+    },
+  },
 }
 
 export default Article
