@@ -10,10 +10,11 @@ const compiler = webpack(webpackConfig)
 
 app.use(require('webpack-dev-middleware')(compiler, {
   publicPath: '/',
-  stats: {colors: true}
+  stats: { colors: true },
 }))
 
 app.use(require('webpack-hot-middleware')(compiler))
+
 app.use(express.static('dist'))
 
 app.get('*', (req, res) => {

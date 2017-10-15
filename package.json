@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --config webpack.production.js",
     "watch": "webpack --progress --watch",
     "start": "NODE_ENV=dev node server/app.js",
     "serve": "serve",
@@ -70,6 +70,7 @@
     "sass-loader": "^6.0.5",
     "serve": "^5.2.1",
     "style-loader": "^0.18.2",
+    "uglifyjs-webpack-plugin": "^1.0.0-beta.3",
     "url-loader": "^0.5.8",
     "webpack": "^2.6.1",
     "webpack-dev-middleware": "^1.10.2",

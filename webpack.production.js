@@ -1,30 +1,28 @@
 /* eslint-disable */
 
-const webpack = require('webpack')
-, path = require('path')
+const webpack = require('webpack'),
+  path = require('path'),
+  UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = function () {
   return {
-    entry: [
-      'webpack-hot-middleware/client?overlay=false&reload=true',
-      'react-hot-loader/patch',
-      './src/index'
-    ],
+    entry: './src/index',
 
     output: {
       filename: '[name].js',
       path: path.resolve(__dirname, 'dist'),
-      publicPath: '/'
+      publicPath: '/',
     },
+
     module: {
       rules: [
         {
           test: /\.css$/,
-          use: ['style-loader','css-loader']
+          use: ['style-loader', 'css-loader'],
         },
         {
           test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
-          use: "file-loader"
+          use: 'file-loader',
         },
         {
           test: /\.js$/,
@@ -33,29 +31,32 @@ module.exports = function () {
             {
               loader: 'babel-loader',
               options: {
-                presets: ['env','react','stage-0'],
-                plugins: ['transform-runtime']
-              }
-            }
-          ]
+                presets: ['env', 'react', 'stage-0'],
+                plugins: ['transform-runtime'],
+              },
+            },
+          ],
         },
         {
           test: /\.(jpe?g|png|gif|svg)$/i,
           use: [
             'url-loader?limit=10240',
-            'img-loader'
-          ]
+            'img-loader',
+          ],
         },
         {
           test: /\.scss$/,
-          use: ['style-loader','css-loader','sass-loader']
-        }
-      ]
+          use: ['style-loader', 'css-loader', 'sass-loader'],
+        },
+      ],
     },
+
     resolve: {
-      extensions: ['.js','.jsx','.json']
+      extensions: ['.js', '.jsx', '.json'],
     },
+
     plugins: [
+      new UglifyJSPlugin(),
       new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: 'jquery'
@@ -69,13 +70,11 @@ module.exports = function () {
       new webpack.optimize.CommonsChunkPlugin({
         name: 'manifest' // 放置 common runtime code
       }),
-      new webpack.HotModuleReplacementPlugin(), // Enable HMR,
-      new webpack.NoEmitOnErrorsPlugin(),
+      new webpack.DefinePlugin({
+        "process.env":{
+          NODE_ENV:JSON.stringify('production')
+        }
+      })
     ],
-    devServer: {
-      hot: true,
-      historyApiFallback: true
-    },
-    devtool: "eval"
   }
 }

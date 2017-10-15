@@ -17,7 +17,7 @@ const App = () =>
       <Route path="/backend" component={BackendHome} />
       <Route path="/home" component={Blog} />
     </Switch>
-    <Screen />
+    {process.env.NODE_ENV === 'production' ? '' : <Screen />}
   </div>)
 
 
