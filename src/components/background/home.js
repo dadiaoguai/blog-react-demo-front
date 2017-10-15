@@ -22,10 +22,10 @@ class BackendHome extends React.Component {
       <div>
         <Header dispatch={dispatch} />
         <main className="backend">
-          <Redirect from="/backend" to="/backend/articles/index" />
+          <Redirect from="/backend" to="/backend/articles" />
 
           <Switch>
-            <Route exact path="/backend/articles/index" component={ArticleManagement} />
+            <Route exact path="/backend/articles" component={ArticleManagement} />
             <Route exact path="/backend/articles/new" component={NewArticle} />
             <Route path="/backend/articles/:id" component={ArticleDetail} />
           </Switch>
@@ -40,7 +40,7 @@ BackendHome.propTypes = {
     active: propTypes.bool,
   }),
   match: propTypes.shape({
-    path: propTypes.object,
+    path: propTypes.string,
   }),
   dispatch: propTypes.func,
 }

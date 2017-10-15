@@ -71,7 +71,7 @@ class LoginBar extends React.Component {
 
 const mapStateToProps = state => ({ active: state.account.active || false })
 
-const Login = withRouter(connect(mapStateToProps)(LoginBar))
+const Login = connect(mapStateToProps)(LoginBar)
 
 export default Login
 
