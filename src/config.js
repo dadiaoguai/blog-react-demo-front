@@ -20,7 +20,7 @@ export const actionType = {
 }
 
 export const axiosInstance = axios.create({
-  baseURL: `http://localhost:${process.env.NODE_ENV === 'production' ? 5202 : 5200}/`,
+  baseURL: `http://127.0.0.1:${process.env.NODE_ENV === 'production' ? 5202 : 5200}/`,
   withCredentials: true,
 })
 
